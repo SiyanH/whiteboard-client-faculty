@@ -3,6 +3,7 @@ import "./CourseManagerContainer.css"
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import CourseManagerHeaderComponent from "../components/CourseManager/CourseManagerHeaderComponent";
 import CourseTableComponent from "../components/CourseManager/CourseTableComponent";
+import CourseGridComponent from "../components/CourseManager/CourseGridComponent";
 import {
     createCourse,
     deleteCourse,
@@ -14,6 +15,7 @@ class CourseManagerContainer extends React.Component {
     state = {
         layout: 'table',
         editingCourse: false,
+        newCourseTitle: 'New Course Title',
         courses: []
     };
 
@@ -70,11 +72,22 @@ class CourseManagerContainer extends React.Component {
                     !this.state.editingCourse &&
                     <div>
                         <CourseManagerHeaderComponent addCourse={this.addCourse}
-                                                      toggleView={this.toggleView}/>
-                        <CourseTableComponent showCourseEditor={this.showCourseEditor}
-                                              deleteCourse={this.deleteCourse}
-                                              updateCourse={this.updateCourse}
-                                              courses={this.state.courses}/>
+                                                      toggleView={this.toggleView}
+                                                      newCourseTitle={this.state.newCourseTitle}/>
+                        {
+                            this.state.layout === 'table' &&
+                            <CourseTableComponent showCourseEditor={this.showCourseEditor}
+                                                  deleteCourse={this.deleteCourse}
+                                                  updateCourse={this.updateCourse}
+                                                  courses={this.state.courses}/>
+                        }
+                        {
+                            this.state.layout === 'grid' &&
+                            <CourseGridComponent showCourseEditor={this.showCourseEditor}
+                                                 deleteCourse={this.deleteCourse}
+                                                 updateCourse={this.updateCourse}
+                                                 courses={this.state.courses}/>
+                        }
                     </div>
                 }
             </div>
