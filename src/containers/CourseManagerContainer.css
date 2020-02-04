@@ -19,7 +19,6 @@ hr {
 }
 
 .wbdv-row.wbdv-course {
-    margin-top: 2px;
     border-left: 1px solid rgba(0, 0, 0, .125);
     border-right: 1px solid rgba(0, 0, 0, .125);
     border-bottom: 1px solid rgba(0, 0, 0, .125);
@@ -46,6 +45,10 @@ hr {
 
 .wbdv-row.wbdv-owner, .wbdv-row.wbdv-modified-date {
     padding-left: 35px;
+}
+
+.wbdv-row.wbdv-button.wbdv-edit {
+    margin-right: 10px;
 }
 
 .wbdv-add-course {
@@ -93,6 +96,10 @@ hr {
     min-width: 24px;
 }
 
+.wbdv-course-list {
+    margin-top: 1px;
+}
+
 .wbdv-fixed-bottom-right {
     position: fixed;
     right: 2vw;
@@ -116,4 +123,15 @@ hr {
 
 #navbarNavDropdown a {
     padding-left: 6px;
+}
+
+#courseTitleEditFld {
+    height: 100%;
+    padding: 0.2em 0.7em 0.2em 0.7em;
+    margin-left: 15px;
+    color: black;
+}
+
+#courseRowBtn {
+    padding-left: 0;
 }
