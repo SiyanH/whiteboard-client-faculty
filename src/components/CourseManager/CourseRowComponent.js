@@ -29,7 +29,8 @@ class CourseRowComponent extends React.Component {
                     ${this.state.clicked ? "text-white" : "text-primary"}`}></i>
                     {
                         !this.state.editing &&
-                        <span className="ml-3 mr-3 wbdv-row wbdv-title">
+                        <span className="ml-3 mr-3 wbdv-row wbdv-title"
+                              onClick={this.props.showCourseEditor}>
                             {this.props.course.title}</span>
                     }
                     {
