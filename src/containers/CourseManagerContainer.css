@@ -1,0 +1,119 @@
+body {
+    background-color: #eeeeee;
+    padding-top: 110px;
+}
+
+hr {
+    border-top: 1px solid rgba(0, 0, 0, .100);
+    box-shadow: 0 2px 5px 1px rgba(60, 64, 67, 0.15)
+}
+
+.wbdv-button, .wbdv-sort, .wbdv-header.wbdv-owner {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.wbdv-header, .wbdv-button.wbdv-grid-layout, .wbdv-button.wbdv-list-layout {
+    color: dimgrey;
+    font-weight: 500;
+}
+
+.wbdv-row.wbdv-course {
+    margin-top: 2px;
+    border-left: 1px solid rgba(0, 0, 0, .125);
+    border-right: 1px solid rgba(0, 0, 0, .125);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.wbdv-row.wbdv-course.active {
+    margin-top: 2px;
+    border: 0;
+}
+
+.wbdv-row.wbdv-course .list-group-item {
+    display: flex;
+    align-items: center;
+    border-color: transparent;
+    border-radius: 0;
+}
+
+.wbdv-row.wbdv-title {
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wbdv-row.wbdv-owner, .wbdv-row.wbdv-modified-date {
+    padding-left: 35px;
+}
+
+.wbdv-add-course {
+    color: red;
+    padding: 0;
+}
+
+.wbdv-add-course .fa-circle {
+    color: white;
+    font-size: 2em;
+}
+
+.wbdv-new-course, .wbdv-new-course:focus {
+    margin-left: 15px;
+    margin-right: 7px;
+    border: none;
+    color: white;
+    background-color: dodgerblue;
+    font-weight: 500;
+}
+
+.wbdv-new-course::placeholder {
+    color: lightgrey;
+    font-weight: normal;
+}
+
+.wbdv-navbar-header {
+    width: 100%;
+    padding-left: 15px;
+}
+
+.wbdv-header-bar {
+    background-color: #eeeeee;
+}
+
+.wbdv-header-bar ul {
+    height: 50px;
+}
+
+.wbdv-icon-grey {
+    color: #b9b9b9;
+}
+
+.wbdv-icon-num {
+    min-width: 24px;
+}
+
+.wbdv-fixed-bottom-right {
+    position: fixed;
+    right: 2vw;
+    bottom: 3vh;
+}
+
+.wbdv-fixed-bottom-right .fa-stack {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: red;
+    box-shadow: 0 1px 5px 1px orangered;
+}
+
+.wbdv-fixed-bottom-right button:focus {
+    outline: none;
+    border-radius: 50%;
+    background-color: orangered;
+    box-shadow: 0 1px 5px 1px orangered;
+}
+
+#navbarNavDropdown a {
+    padding-left: 6px;
+}
