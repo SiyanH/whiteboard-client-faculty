@@ -2,7 +2,7 @@ import React from "react";
 import {format} from 'date-fns';
 import Course from "../../models/CourseModel";
 
-const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =>
+const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseTitle}) =>
     <div className="fixed-top">
         <nav className="navbar navbar-dark bg-primary">
             <div className="wbdv-navbar-header row">
@@ -24,7 +24,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
                             type="submit"
                             onClick=
                                 {
-                                    () =>addCourse(new Course(
+                                    () => addCourse(new Course(
                                         newCourseTitle, "me",
                                         format(
                                             new Date(),
@@ -60,9 +60,17 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
         <div className="container wbdv-header-bar">
             <ul className="nav nav-pills d-flex align-items-center row">
                 <li className="nav-item col-lg-6 col-9">
-                    <div className="nav-link wbdv-header wbdv-title">Title</div>
+                    {
+                        layout === 'table' &&
+                        <div className="nav-link wbdv-header wbdv-title">Title</div>
+                    }
+                    {
+                        layout === 'grid' &&
+                        <div className="nav-link wbdv-header wbdv-title">Recent documents</div>
+                    }
                 </li>
-                <li className="nav-item dropdown col-lg-2 d-none d-lg-block">
+                <li className={`nav-item dropdown d-none d-lg-block 
+                ${layout === 'table' ? "col-lg-2" : "col-lg-3"}`}>
                     <button aria-expanded="false" aria-haspopup="true"
                             className="nav-link dropdown-toggle border-0 wbdv-header wbdv-owner"
                             data-toggle="dropdown" type="button">Owned by
@@ -73,28 +81,56 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
                         <a className="dropdown-item" href="/#">anyone</a>
                     </div>
                 </li>
-                <li className="nav-item col-lg-2 d-none d-lg-block">
-                    <div className="nav-link wbdv-header wbdv-last-modified">Last modified</div>
-                </li>
-                <li className="nav-item d-flex justify-content-end pr-0 col-1">
-                    <button className="nav-link wbdv-button wbdv-grid-layout wbdv-list-layout"
-                            title="Grid view" type="button" onClick={toggleView}>
-                        <i className="fas fa-grip-horizontal"></i>
-                    </button>
-                </li>
-                <li className="nav-item dropdown pl-0 col-1">
-                    <button aria-expanded="false" aria-haspopup="true"
-                            className="nav-link dropdown-toggle wbdv-header wbdv-sort"
-                            data-toggle="dropdown"
-                            title="Sort options" type="button">
-                        <i className="fas fa-sort"></i>
-                    </button>
-                    <div className="dropdown-menu">
-                        <a className="dropdown-item" href="/#">Last opened by me</a>
-                        <a className="dropdown-item" href="/#">Last modified by me</a>
-                        <a className="dropdown-item" href="/#">Last modified</a>
-                        <a className="dropdown-item" href="/#">Title</a>
-                    </div>
+                {
+                    layout === 'table' &&
+                    <li className="nav-item col-lg-2 d-none d-lg-block">
+                        <div className="nav-link wbdv-header wbdv-last-modified">Last modified</div>
+                    </li>
+                }
+                <li className="nav-item col-2 d-flex justify-content-center">
+                    <ul className="nav nav-pills d-flex align-items-center">
+                        {
+                            layout === 'table' &&
+                            <li className="nav-item">
+                                <button className="nav-link wbdv-button wbdv-list-layout"
+                                        title="Grid view" type="button" onClick={toggleView}>
+                                    <i className="fas fa-grip-horizontal"></i>
+                                </button>
+                            </li>
+                        }
+                        {
+                            layout === 'grid' &&
+                            <li className="nav-item">
+                                <button className="nav-link wbdv-button wbdv-grid-layout"
+                                        title="List view" type="button" onClick={toggleView}>
+                                    <i className="fas fa-list"></i>
+                                </button>
+                            </li>
+                        }
+                        <li className="nav-item dropdown">
+                            <button aria-expanded="false" aria-haspopup="true"
+                                    className="nav-link dropdown-toggle wbdv-header wbdv-sort"
+                                    data-toggle="dropdown"
+                                    title="Sort options" type="button">
+                                <i className="fas fa-sort"></i>
+                            </button>
+                            <div className="dropdown-menu">
+                                <a className="dropdown-item" href="/#">Last opened by me</a>
+                                <a className="dropdown-item" href="/#">Last modified by me</a>
+                                <a className="dropdown-item" href="/#">Last modified</a>
+                                <a className="dropdown-item" href="/#">Title</a>
+                            </div>
+                        </li>
+                        {
+                            layout === 'grid' &&
+                            <li className="nav-item">
+                                <button className="nav-link wbdv-button wbdv-grid-layout"
+                                        title="Open file picker" type="button">
+                                    <i className="fas fa-folder"></i>
+                                </button>
+                            </li>
+                        }
+                    </ul>
                 </li>
             </ul>
         </div>

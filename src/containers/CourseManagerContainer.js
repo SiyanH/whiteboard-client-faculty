@@ -73,6 +73,7 @@ class CourseManagerContainer extends React.Component {
                     <div>
                         <CourseManagerHeaderComponent addCourse={this.addCourse}
                                                       toggleView={this.toggleView}
+                                                      layout={this.state.layout}
                                                       newCourseTitle={this.state.newCourseTitle}/>
                         {
                             this.state.layout === 'table' &&
