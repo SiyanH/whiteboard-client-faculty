@@ -59,18 +59,22 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
         </nav>
         <div className="container wbdv-header-bar">
             <ul className="nav nav-pills d-flex align-items-center row">
-                <li className="nav-item col-lg-6 col-9">
+                <li className={`nav-item col-lg-6 col-6 
+                ${layout === 'table' ? "col-md-7 col-sm-8" : "col-md-6 col-sm-7"}`}>
                     {
                         layout === 'table' &&
                         <div className="nav-link wbdv-header wbdv-title">Title</div>
                     }
                     {
                         layout === 'grid' &&
-                        <div className="nav-link wbdv-header wbdv-title">Recent documents</div>
+                        <div className="nav-link wbdv-header wbdv-title">
+                            <span className="d-none d-sm-block">Recent courses</span>
+                            <span className="d-block d-sm-none">Courses</span>
+                        </div>
                     }
                 </li>
-                <li className={`nav-item dropdown d-none d-lg-block 
-                ${layout === 'table' ? "col-lg-2" : "col-lg-3"}`}>
+                <li className={`nav-item dropdown d-none d-md-block col-md-2 
+                ${layout === 'table' && "col-lg-2"}`}>
                     <button aria-expanded="false" aria-haspopup="true"
                             className="nav-link dropdown-toggle border-0 wbdv-header wbdv-owner"
                             data-toggle="dropdown" type="button">Owned by
@@ -87,7 +91,8 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                         <div className="nav-link wbdv-header wbdv-last-modified">Last modified</div>
                     </li>
                 }
-                <li className="nav-item col-2 d-flex justify-content-center">
+                <li className={`nav-item d-flex justify-content-lg-center justify-content-end col-6
+                ${layout === 'table' ? "col-lg-2 col-md-3 col-sm-4" : "col-md-4 col-sm-5"}`}>
                     <ul className="nav nav-pills d-flex align-items-center">
                         {
                             layout === 'table' &&
@@ -124,8 +129,9 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                         {
                             layout === 'grid' &&
                             <li className="nav-item">
-                                <button className="nav-link wbdv-button wbdv-grid-layout"
-                                        title="Open file picker" type="button">
+                                <button
+                                    className="nav-link wbdv-button wbdv-grid-layout d-none d-sm-block"
+                                    title="Open file picker" type="button">
                                     <i className="fas fa-folder"></i>
                                 </button>
                             </li>

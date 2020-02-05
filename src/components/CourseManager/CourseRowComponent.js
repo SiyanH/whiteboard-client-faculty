@@ -28,8 +28,8 @@ class CourseRowComponent extends React.Component {
         return (
             <ul className={`list-group list-group-horizontal wbdv-row wbdv-course 
             ${this.props.isSelectedCourse && "active"}`} onClick={this.setClicked}>
-                <li className={`list-group-item col-lg-6 col-10 ${this.props.isSelectedCourse
-                                                                  && "active"}`}>
+                <li className={`list-group-item col-lg-6 col-md-7 col-10 
+                ${this.props.isSelectedCourse && "active"}`}>
                     <i className={`fas fa-file-alt wbdv-row wbdv-icon 
                     ${this.props.isSelectedCourse ? "text-white" : "text-primary"}`}></i>
                     {
@@ -45,7 +45,7 @@ class CourseRowComponent extends React.Component {
                                onChange={(e) => this.setCourse(e)}/>
                     }
                 </li>
-                <li className={`list-group-item wbdv-row wbdv-owner col-lg-2 d-none d-lg-block 
+                <li className={`list-group-item wbdv-row wbdv-owner col-lg-2 d-none d-md-block 
                 ${this.props.isSelectedCourse && "active"}`}>{this.props.course.owner}
                 </li>
                 <li className={`list-group-item wbdv-row wbdv-modified-date col-lg-3 d-none d-lg-block
