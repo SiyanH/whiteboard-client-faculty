@@ -14,7 +14,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <a className="navbar-brand wbdv-label wbdv-course-manager d-none d-sm-block col-lg-4 col-sm-4"
-                   href="#">Course Manager</a>
+                   href="/#">Course Manager</a>
                 <form className="form-inline row col-lg-6 col-sm-7 col-10">
                     <input
                         className="form-control wbdv-field wbdv-new-course mr-sm-2 col-md-8 col-sm-8 col-9"
@@ -68,9 +68,9 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
                             data-toggle="dropdown" type="button">Owned by
                     </button>
                     <div className="dropdown-menu">
-                        <a className="dropdown-item" href="#">me</a>
-                        <a className="dropdown-item" href="#">other</a>
-                        <a className="dropdown-item" href="#">anyone</a>
+                        <a className="dropdown-item" href="/#">me</a>
+                        <a className="dropdown-item" href="/#">other</a>
+                        <a className="dropdown-item" href="/#">anyone</a>
                     </div>
                 </li>
                 <li className="nav-item col-lg-2 d-none d-lg-block">
@@ -90,10 +90,10 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, newCourseTitle}) =
                         <i className="fas fa-sort"></i>
                     </button>
                     <div className="dropdown-menu">
-                        <a className="dropdown-item" href="#">Last opened by me</a>
-                        <a className="dropdown-item" href="#">Last modified by me</a>
-                        <a className="dropdown-item" href="#">Last modified</a>
-                        <a className="dropdown-item" href="#">Title</a>
+                        <a className="dropdown-item" href="/#">Last opened by me</a>
+                        <a className="dropdown-item" href="/#">Last modified by me</a>
+                        <a className="dropdown-item" href="/#">Last modified</a>
+                        <a className="dropdown-item" href="/#">Title</a>
                     </div>
                 </li>
             </ul>
