@@ -1,4 +1,5 @@
 import React from "react";
+import {format} from "date-fns";
 
 class CourseRowComponent extends React.Component {
     state = {
@@ -11,7 +12,11 @@ class CourseRowComponent extends React.Component {
     setCourse = (e) => this.setState({
                                          course: {
                                              ...this.state.course,
-                                             title: e.target.value
+                                             title: e.target.value,
+                                             modifiedDate: format(
+                                                 new Date(),
+                                                 'PP p'
+                                             )
                                          }
                                      });
     updateCourse = () => {
@@ -23,7 +28,8 @@ class CourseRowComponent extends React.Component {
         return (
             <ul className={`list-group list-group-horizontal wbdv-row wbdv-course 
             ${this.props.isSelectedCourse && "active"}`} onClick={this.setClicked}>
-                <li className={`list-group-item col-lg-6 col-10 ${this.props.isSelectedCourse && "active"}`}>
+                <li className={`list-group-item col-lg-6 col-10 ${this.props.isSelectedCourse
+                                                                  && "active"}`}>
                     <i className={`fas fa-file-alt wbdv-row wbdv-icon 
                     ${this.props.isSelectedCourse ? "text-white" : "text-primary"}`}></i>
                     {
