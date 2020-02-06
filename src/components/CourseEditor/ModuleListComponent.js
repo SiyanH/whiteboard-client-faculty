@@ -105,7 +105,7 @@ const ModuleListComponent = () =>
             <label className="sr-only" htmlFor="newModuleTitleInput">New Module Title</label>
             <input id="newModuleTitleInput" placeholder="New Module Title" type="text"/>
             <button className="wbdv-module-item-add-btn wbdv-btn-hover-shadow"
-                    title="Add new module" type="submit">
+                    title="Add new module" type="button">
                 <i className="fas fa-plus fa-lg text-white-50"></i>
             </button>
         </form>
