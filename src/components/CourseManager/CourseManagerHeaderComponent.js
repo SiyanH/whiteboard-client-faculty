@@ -1,5 +1,4 @@
 import React from "react";
-import {format} from 'date-fns';
 import Course from "../../models/CourseModel";
 
 const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseTitle}) =>
@@ -24,16 +23,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                             type="submit"
                             onClick=
                                 {
-                                    () => addCourse(new Course(
-                                        newCourseTitle, "me",
-                                        format(
-                                            new Date(),
-                                            'PP p'
-                                        ),
-                                        format(
-                                            new Date(),
-                                            'PP p'
-                                        )))
+                                    () => addCourse(new Course(newCourseTitle, "me", new Date(), new Date()))
                                 }>
                         <span className="fa-stack fa-lg">
                             <i className="fas fa-circle fa-stack-1x"></i>

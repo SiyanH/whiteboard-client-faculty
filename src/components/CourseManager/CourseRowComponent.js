@@ -13,10 +13,7 @@ class CourseRowComponent extends React.Component {
                                          course: {
                                              ...this.state.course,
                                              title: e.target.value,
-                                             modifiedDate: format(
-                                                 new Date(),
-                                                 'PP p'
-                                             )
+                                             modifiedDate: new Date()
                                          }
                                      });
     updateCourse = () => {
@@ -49,7 +46,8 @@ class CourseRowComponent extends React.Component {
                 ${this.props.isSelectedCourse && "active"}`}>{this.props.course.owner}
                 </li>
                 <li className={`list-group-item wbdv-row wbdv-modified-date col-lg-3 d-none d-lg-block
-                ${this.props.isSelectedCourse && "active"}`}>{this.props.course.modifiedDate}
+                ${this.props.isSelectedCourse && "active"}`}>
+                    {format(new Date(this.props.course.modifiedDate), 'PP p')}
                 </li>
                 <li className={`list-group-item d-flex justify-content-center col-lg-1 col-2
                 ${this.props.isSelectedCourse && "active"}`} id="courseRowBtn">
