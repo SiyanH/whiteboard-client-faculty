@@ -10,6 +10,7 @@ import {
     updateCourse,
     findAllCourses
 } from "../services/CourseService";
+import CourseAddFloatButton from "../components/CourseManager/CourseAddFloatButton";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -89,6 +90,8 @@ class CourseManagerContainer extends React.Component {
                                                  updateCourse={this.updateCourse}
                                                  courses={this.state.courses}/>
                         }
+                        <CourseAddFloatButton addCourse={this.addCourse}
+                                              newCourseTitle={this.state.newCourseTitle}/>
                     </div>
                 }
             </div>
