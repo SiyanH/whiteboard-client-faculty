@@ -37,7 +37,7 @@ class CourseRowComponent extends React.Component {
                     }
                     {
                         this.state.editing &&
-                        <input id="courseTitleEditFld" className="form-control"
+                        <input className="form-control title-edit-field"
                                value={this.state.course.title}
                                onChange={(e) => this.setCourse(e)}/>
                     }

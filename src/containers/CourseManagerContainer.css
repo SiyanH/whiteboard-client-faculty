@@ -8,6 +8,20 @@ hr {
     box-shadow: 0 2px 5px 1px rgba(60, 64, 67, 0.15)
 }
 
+.title-edit-field {
+    height: 100%;
+    padding: 0.2em 0.7em 0.2em 0.7em;
+    color: black;
+}
+
+.wbdv-row.wbdv-course .title-edit-field {
+    margin-left: 15px;
+}
+
+.wbdv-course-card .title-edit-field {
+    margin-bottom: 5px;
+}
+
 .wbdv-button, .wbdv-sort, .wbdv-header.wbdv-owner {
     background-color: transparent;
     border-color: transparent;
@@ -100,6 +114,25 @@ hr {
     margin-top: 1px;
 }
 
+.wbdv-course-grid {
+    margin-top: 15px;
+}
+
+.wbdv-course-card .card-body.active {
+    background-color: aliceblue;
+}
+
+.wbdv-course-card .card-title {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wbdv-course-card .card-text {
+    font-size: 14px;
+}
+
 .wbdv-fixed-bottom-right {
     position: fixed;
     right: 2vw;
@@ -123,13 +156,6 @@ hr {
 
 #navbarNavDropdown a {
     padding-left: 6px;
-}
-
-#courseTitleEditFld {
-    height: 100%;
-    padding: 0.2em 0.7em 0.2em 0.7em;
-    margin-left: 15px;
-    color: black;
 }
 
 #courseRowBtn {
