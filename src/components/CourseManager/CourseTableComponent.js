@@ -6,7 +6,7 @@ const CourseTableComponent = ({showCourseEditor, deleteCourse, updateCourse, cou
     const [selectedCourse, setSelectedCourse] = useState(new Course());
 
     return (
-        <div className="container-md wbdv-course-list">
+        <div className="container-fluid wbdv-course-list">
             {
                 courses.map((course) =>
                                 <CourseRowComponent

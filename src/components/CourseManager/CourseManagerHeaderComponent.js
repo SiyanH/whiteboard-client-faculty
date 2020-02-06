@@ -47,7 +47,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                 </ul>
             </div>
         </nav>
-        <div className="container-md wbdv-header-bar">
+        <div className="container-fluid wbdv-header-bar">
             <ul className="nav nav-pills d-flex align-items-center row">
                 <li className={`nav-item col-lg-6 col-6 
                 ${layout === 'table' ? "col-md-7 col-sm-8" : "col-md-6 col-sm-7"}`}>
