@@ -20,7 +20,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                         placeholder="New Course Title" type="text"
                         onChange={(e) => newCourseTitle = e.target.value}/>
                     <button className="wbdv-button wbdv-add-course col-1" title="Add new course"
-                            type="submit"
+                            type="button"
                             onClick=
                                 {
                                     () => addCourse(new Course(newCourseTitle, "me", new Date(), new Date()))
@@ -39,7 +39,7 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                     </li>
                     <li className="nav-item">
                         <a className="nav-link"
-                           href="/profile/profile.template.client.html">Profile</a>
+                           href="/#">Profile</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/">Sign out</a>
