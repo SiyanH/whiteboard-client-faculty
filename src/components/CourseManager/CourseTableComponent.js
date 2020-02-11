@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Course from "../../models/CourseModel";
 import CourseRowComponent from "./CourseRowComponent";
 
-const CourseTableComponent = ({showCourseEditor, deleteCourse, updateCourse, courses}) => {
+const CourseTableComponent = ({deleteCourse, updateCourse, courses}) => {
     const [selectedCourse, setSelectedCourse] = useState(new Course());
 
     return (
@@ -11,7 +11,6 @@ const CourseTableComponent = ({showCourseEditor, deleteCourse, updateCourse, cou
                 courses.map((course) =>
                                 <CourseRowComponent
                                     key={course._id}
-                                    showCourseEditor={showCourseEditor}
                                     deleteCourse={deleteCourse}
                                     updateCourse={updateCourse}
                                     course={course}

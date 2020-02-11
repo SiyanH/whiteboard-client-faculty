@@ -1,8 +1,8 @@
 import React from "react";
 import Course from "../../models/CourseModel";
 
-const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseTitle}) =>
-    <div className="fixed-top">
+const CourseManagerHeaderComponent = ({addCourse, layout, newCourseTitle, history}) =>
+    <div className="fixed-top wbdv-manager-header">
         <nav className="navbar navbar-dark bg-primary">
             <div className="wbdv-navbar-header row">
                 <button aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -23,7 +23,8 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                             type="button"
                             onClick=
                                 {
-                                    () => addCourse(new Course(newCourseTitle, "me", new Date(), new Date()))
+                                    () => addCourse(
+                                        new Course(newCourseTitle, "me", new Date(), new Date()))
                                 }>
                         <span className="fa-stack fa-lg">
                             <i className="fas fa-circle fa-stack-1x"></i>
@@ -88,7 +89,8 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                             layout === 'table' &&
                             <li className="nav-item">
                                 <button className="nav-link wbdv-button wbdv-list-layout"
-                                        title="Grid view" type="button" onClick={toggleView}>
+                                        title="Grid view" type="button"
+                                        onClick={() => history.push("/grid")}>
                                     <i className="fas fa-grip-horizontal"></i>
                                 </button>
                             </li>
@@ -97,7 +99,8 @@ const CourseManagerHeaderComponent = ({addCourse, toggleView, layout, newCourseT
                             layout === 'grid' &&
                             <li className="nav-item">
                                 <button className="nav-link wbdv-button wbdv-grid-layout"
-                                        title="List view" type="button" onClick={toggleView}>
+                                        title="List view" type="button"
+                                        onClick={() => history.push("/table")}>
                                     <i className="fas fa-list"></i>
                                 </button>
                             </li>

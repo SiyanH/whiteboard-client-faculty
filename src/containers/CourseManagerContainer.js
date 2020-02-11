@@ -1,21 +1,18 @@
 import React from "react";
 import "./CourseManagerContainer.css"
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import CourseManagerHeaderComponent from "../components/CourseManager/CourseManagerHeaderComponent";
-import CourseTableComponent from "../components/CourseManager/CourseTableComponent";
-import CourseGridComponent from "../components/CourseManager/CourseGridComponent";
+import CourseListComponent from "../components/CourseManager/CourseListComponent";
+import ErrorPage from "../components/ErrorPage"
 import {
     createCourse,
     deleteCourse,
     updateCourse,
     findAllCourses
 } from "../services/CourseService";
-import CourseAddFloatButton from "../components/CourseManager/CourseAddFloatButton";
+import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 
 class CourseManagerContainer extends React.Component {
     state = {
-        layout: 'table',
-        editingCourse: false,
         newCourseTitle: 'New Course Title',
         courses: []
     };
@@ -42,58 +39,42 @@ class CourseManagerContainer extends React.Component {
         this.fetchCourses();
     };
 
-    toggleView = () => {
-        this.setState((prevState) => {
-            if (prevState.layout === 'grid') {
-                return {
-                    layout: 'table'
-                }
-            } else {
-                return {
-                    layout: 'grid'
-                }
-            }
-        });
-    };
-
-    showCourseEditor = () =>
-        this.setState({editingCourse: true});
-
-    hideCourseEditor = () =>
-        this.setState({editingCourse: false});
-
     render() {
         return (
             <div>
-                {
-                    this.state.editingCourse
-                    && <CourseEditorComponent hideCourseEditor={this.hideCourseEditor}/>
-                }
-                {
-                    !this.state.editingCourse &&
-                    <div>
-                        <CourseManagerHeaderComponent addCourse={this.addCourse}
-                                                      toggleView={this.toggleView}
-                                                      layout={this.state.layout}
-                                                      newCourseTitle={this.state.newCourseTitle}/>
-                        {
-                            this.state.layout === 'table' &&
-                            <CourseTableComponent showCourseEditor={this.showCourseEditor}
-                                                  deleteCourse={this.deleteCourse}
-                                                  updateCourse={this.updateCourse}
-                                                  courses={this.state.courses}/>
-                        }
-                        {
-                            this.state.layout === 'grid' &&
-                            <CourseGridComponent showCourseEditor={this.showCourseEditor}
-                                                 deleteCourse={this.deleteCourse}
-                                                 updateCourse={this.updateCourse}
-                                                 courses={this.state.courses}/>
-                        }
-                        <CourseAddFloatButton addCourse={this.addCourse}
-                                              newCourseTitle={this.state.newCourseTitle}/>
-                    </div>
-                }
+                <Router>
+                    <Switch>
+                        <Redirect exact from="/" to="/table"/>
+                        <Route
+                            path="/course/:courseId"
+                            exact={true}
+                            render={(props) =>
+                                <CourseEditorComponent history={props.history}
+                                                       courseId={props.match.params.courseId}/>
+                            }/>
+                        <Route
+                            path="/(table|grid)"
+                            exact={true}
+                            render={(props) =>
+                                <div>
+                                    <CourseListComponent
+                                        updateCourse={this.updateCourse}
+                                        newCourseTitle={this.state.newCourseTitle}
+                                        addCourse={this.addCourse}
+                                        deleteCourse={this.deleteCourse}
+                                        courses={this.state.courses}
+                                        history={props.history}
+                                        match={props.match}/>
+                                </div>
+                            }/>
+                        <Route
+                            path="/error"
+                            exact={true}
+                            render={(props) => <ErrorPage/>}
+                        />
+                        <Redirect to="/error"/>
+                    </Switch>
+                </Router>
             </div>
         )
     }

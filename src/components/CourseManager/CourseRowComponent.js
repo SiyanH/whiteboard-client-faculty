@@ -1,5 +1,6 @@
 import React from "react";
 import {format} from "date-fns";
+import {Link} from "react-router-dom";
 
 class CourseRowComponent extends React.Component {
     state = {
@@ -31,9 +32,10 @@ class CourseRowComponent extends React.Component {
                     ${this.props.isSelectedCourse ? "text-white" : "text-primary"}`}></i>
                     {
                         !this.state.editing &&
-                        <span className="ml-3 mr-3 wbdv-row wbdv-title"
-                              onClick={this.props.showCourseEditor}>
-                            {this.props.course.title}</span>
+                        <Link to={`/course/${this.props.course._id}`}>
+                            <span className="ml-3 mr-3 wbdv-row wbdv-title">
+                                {this.props.course.title}</span>
+                        </Link>
                     }
                     {
                         this.state.editing &&

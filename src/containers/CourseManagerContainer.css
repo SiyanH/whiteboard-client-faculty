@@ -1,9 +1,4 @@
-body {
-    background-color: #eeeeee;
-    padding-top: 110px;
-}
-
-hr {
+.wbdv-manager-header hr {
     border-top: 1px solid rgba(0, 0, 0, .100);
     box-shadow: 0 2px 5px 1px rgba(60, 64, 67, 0.15)
 }
@@ -22,7 +17,7 @@ hr {
     margin-bottom: 5px;
 }
 
-.wbdv-button, .wbdv-sort, .wbdv-header.wbdv-owner {
+.wbdv-sort, .wbdv-header.wbdv-owner {
     background-color: transparent;
     border-color: transparent;
 }
@@ -51,6 +46,7 @@ hr {
 }
 
 .wbdv-row.wbdv-title {
+    color: inherit;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -111,7 +107,11 @@ hr {
 }
 
 .wbdv-course-list {
-    margin-top: 1px;
+    padding-top: 112px;
+}
+
+.wbdv-course-list a {
+    color: inherit;
 }
 
 .wbdv-course-grid {

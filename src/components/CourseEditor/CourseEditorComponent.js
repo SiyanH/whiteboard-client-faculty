@@ -9,7 +9,7 @@ const CourseEditorComponent = ({hideCourseEditor}) =>
     <div>
         <LessonTabsComponent hideCourseEditor={hideCourseEditor}/>
         <div className="container-fluid vh-100">
-            <div className="row vh-100">
+            <div className="row vh-100 wbdv-course-editor-content">
                 <div className="wbdv-course-editor-left col-lg-4 col-xl-3">
                     <ModuleListComponent/>
                 </div>

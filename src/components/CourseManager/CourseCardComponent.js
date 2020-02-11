@@ -1,5 +1,6 @@
 import React from "react";
 import {format, isToday} from 'date-fns'
+import {Link} from "react-router-dom";
 
 class CourseCardComponent extends React.Component {
     state = {
@@ -34,8 +35,10 @@ class CourseCardComponent extends React.Component {
                         <div>
                             {
                                 !this.state.editing &&
-                                <h6 className="card-title" title={this.props.course.title}
-                                    onClick={this.props.showCourseEditor}>{this.props.course.title}</h6>
+                                <Link to={`/course/${this.props.course._id}`}>
+                                    <h6 className="card-title"
+                                        title={this.props.course.title}>{this.props.course.title}</h6>
+                                </Link>
                             }
                             {
                                 this.state.editing &&
