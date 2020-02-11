@@ -1,13 +1,12 @@
 import React from "react";
 
-const LessonTabsComponent = ({hideCourseEditor}) =>
+const LessonTabsComponent = ({history, courseTitle}) =>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a aria-label="Close"
-           className="close ml-1 pb-1 wbdv-course-editor wbdv-close"
-           href="/#" role="button" title="Close" onClick={hideCourseEditor}>
+        <button className="close ml-1 pb-1 wbdv-course-editor wbdv-close"
+           aria-label="Close" type="button" title="Close" onClick={history.goBack}>
             <span aria-hidden="true">&times;</span>
-        </a>
-        <a className="navbar-brand wbdv-course-title" href="/#">CS5610 - WebDev</a>
+        </button>
+        <a className="navbar-brand wbdv-course-title" href="/#">{courseTitle}</a>
         <button aria-controls="navbarOption" aria-expanded="false" aria-label="Toggle navigation"
                 className="navbar-toggler" data-target="#navbarOption" data-toggle="collapse"
                 type="button">
