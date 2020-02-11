@@ -22,6 +22,10 @@ class CourseCardComponent extends React.Component {
         this.props.updateCourse(this.state.course._id, this.state.course);
         this.setState({editing: false});
     };
+    getModifiedDate = () =>
+        isToday(this.state.modifiedDate) ?
+        format(this.state.modifiedDate, ' p') :
+        format(this.state.modifiedDate, ' PP');
 
     render() {
         return (
@@ -48,17 +52,16 @@ class CourseCardComponent extends React.Component {
                             }
                         </div>
                         <div className="d-flex align-items-center justify-content-between">
-                            <div>
+                            <div className="wbdv-course-card-date">
                                 <i className="fas fa-file-alt wbdv-row wbdv-icon text-primary mr-2"></i>
-                                <span className="card-text text-muted">Modified&nbsp;
+                                <span className="card-text text-muted"
+                                      title={`Modified ${this.getModifiedDate()}`}>Modified&nbsp;
                                     {
-                                        isToday(this.state.modifiedDate) ?
-                                        format(this.state.modifiedDate, ' p') :
-                                        format(this.state.modifiedDate, ' PP')
+                                        this.getModifiedDate()
                                     }
                                 </span>
                             </div>
-                            <div>
+                            <div className="d-flex align-items-center">
                                 {
                                     !this.props.isSelectedCourse &&
                                     <i className="fas fa-ellipsis-v text-black-50"></i>

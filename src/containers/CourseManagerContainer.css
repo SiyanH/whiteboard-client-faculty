@@ -133,6 +133,13 @@
     font-size: 14px;
 }
 
+.wbdv-course-card-date {
+    margin-right: 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .wbdv-fixed-bottom-right {
     position: fixed;
     right: 2vw;
