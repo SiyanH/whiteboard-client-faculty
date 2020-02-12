@@ -23,7 +23,10 @@ class ModuleListItemComponent extends React.Component {
             <div className={`d-flex align-items-center justify-content-between list-group-item 
                             list-group-item-action wbdv-module-item 
                             ${this.props.isCurrentModule && "active"}`}
-                 onClick={() => this.props.setCurrentModuleId(this.props.module._id)}>
+                 onClick={() => {
+                     this.props.setCurrentModuleId(this.props.module._id);
+                     this.props.findLessonsForModule(this.props.module._id);
+                 }}>
                 {
                     !this.state.editing &&
                     <div title={this.props.module.title}

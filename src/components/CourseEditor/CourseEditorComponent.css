@@ -36,6 +36,10 @@
     margin-right: 10px;
 }
 
+.wbdv-lesson-tabs {
+    margin-top: 15px;
+}
+
 .wbdv-topic-pill.btn-secondary:not(:disabled).active {
     background-color: #3c3c3c;
 }
@@ -98,6 +102,23 @@
     margin-right: 10px;
 }
 
+.wbdv-lesson-tab-btn {
+    margin-left: 10px;
+}
+
+.wbdv-lesson-tab-btn .wbdv-delete {
+    margin-right: 7px;
+}
+
+.wbdv-lesson-tab-item {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.wbdv-lesson-tab-item .title-edit-field {
+    width: 98%;
+}
+
 .wbdv-topic-pill-list {
     margin-top: 15px;
 }
@@ -122,6 +143,10 @@
 .wbdv-widget-add-btn {
     margin-right: 10px;
     margin-bottom: 15px;
+}
+
+.wbdv-lesson-tab-btn-only {
+    margin-top: 20px;
 }
 
 #widgetType {
