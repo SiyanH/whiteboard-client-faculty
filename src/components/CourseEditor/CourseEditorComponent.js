@@ -1,7 +1,8 @@
 import React from "react";
 import "./CourseEditorComponent.css"
-import LessonTabsComponent from "./LessonTabsComponent";
+import CourseEditorHeaderComponent from "./CourseEditorHeaderComponent";
 import ModuleListComponent from "./ModuleListComponent";
+import LessonTabsComponent from "./LessonTabsComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
 import WidgetListComponent from "./WidgetListComponent";
 import {findCourseById} from "../../services/CourseService";
@@ -35,14 +36,15 @@ class CourseEditorComponent extends React.Component {
         return (
             <Provider store={store}>
                 <div>
-                    <LessonTabsComponent history={this.props.history}
-                                         courseTitle={this.state.course.title}/>
+                    <CourseEditorHeaderComponent history={this.props.history}
+                                                 courseTitle={this.state.course.title}/>
                     <div className="container-fluid vh-100">
                         <div className="row vh-100 wbdv-course-editor-content">
                             <div className="wbdv-course-editor-left col-lg-4 col-xl-3">
                                 <ModuleListComponent courseId={this.props.courseId}/>
                             </div>
                             <div className="wbdv-course-editor-right col-lg-8 col-xl-9">
+                                <LessonTabsComponent/>
                                 <TopicPillsComponent/>
                                 <div className="d-flex align-items-center float-right">
                                     <button className="btn btn-sm btn-success wbdv-widget-save-btn"

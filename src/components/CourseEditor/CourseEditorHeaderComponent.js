@@ -1,6 +1,6 @@
 import React from "react";
 
-const LessonTabsComponent = ({history, courseTitle}) =>
+const CourseEditorHeaderComponent = ({history, courseTitle}) =>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <button className="close ml-1 pb-1 wbdv-course-editor wbdv-close"
            aria-label="Close" type="button" title="Close" onClick={history.goBack}>
@@ -30,4 +30,4 @@ const LessonTabsComponent = ({history, courseTitle}) =>
         </button>
     </nav>;
 
-export default LessonTabsComponent;
+export default CourseEditorHeaderComponent;
