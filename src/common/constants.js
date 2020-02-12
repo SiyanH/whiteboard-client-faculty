@@ -1,4 +1,4 @@
-const BASE_URL = "https://wbdv-generic-server.herokuapp.com/api/hsy6337/";
+const BASE_URL = "https://wbdv-generic-server.herokuapp.com/api/hsy6337";
 
 export const API_URL_COURSE = `${BASE_URL}/courses`;
 export const API_URL_MODULE = `${BASE_URL}/modules`;
