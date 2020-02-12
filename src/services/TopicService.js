@@ -1,7 +1,6 @@
 import {API_URL_LESSON} from "../common/constants";
 import {API_URL_TOPIC} from "../common/constants";
 
-
 /** Create a new topic instance for the lesson whose ID is lessonId **/
 export const createTopic = async (lessonId, topic) => {
     const response = await fetch(`${API_URL_LESSON}/${lessonId}/topic`, {
@@ -41,3 +40,11 @@ export const deleteLesson = async (topicId) => {
     const response = await fetch(`${API_URL_TOPIC}/${topicId}`, {method: 'DELETE'});
     return await response.json();
 };
+
+export default {
+    createTopic,
+    findTopicsForLesson,
+    findTopic,
+    updateTopic,
+    deleteLesson
+}

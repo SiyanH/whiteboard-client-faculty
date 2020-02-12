@@ -36,7 +36,15 @@ export const updateModule = async (moduleId, module) => {
 };
 
 /** Remove module whose ID is moduleId **/
- export const deleteModule = async (moduleId) => {
+export const deleteModule = async (moduleId) => {
     const response = await fetch(`${API_URL_MODULE}/${moduleId}`, {method: 'DELETE'});
     return await response.json();
 };
+
+export default {
+    createModule,
+    findModulesForCourse,
+    findModule,
+    updateModule,
+    deleteModule
+}

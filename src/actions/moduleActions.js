@@ -9,6 +9,16 @@ export const createModule = (module) => ({
     newModule: module
 });
 
+export const findModulesForCourse = (modules) => ({
+    type: FIND_MODULE_FOR_COURSE,
+    modules: modules
+});
+
+export const findModules = (modules) => ({
+    type: FIND_MODULE,
+    modules: modules
+});
+
 export const updateModule = (moduleId, module) => ({
     type: UPDATE_MODULE,
     moduleId: moduleId,

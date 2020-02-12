@@ -40,3 +40,11 @@ export const deleteLesson = async (lessonId) => {
     const response = await fetch(`${API_URL_LESSON}/${lessonId}`, {method: 'DELETE'});
     return await response.json();
 };
+
+export default {
+    createLesson,
+    findLessonsForModule,
+    findLesson,
+    updateLesson,
+    deleteLesson
+}

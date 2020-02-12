@@ -1,3 +1,5 @@
+import {FIND_MODULE, FIND_MODULE_FOR_COURSE} from "./moduleActions";
+
 export const CREATE_LESSON = "CREATE_LESSON";
 export const FIND_LESSON_FOR_MODULE = "FIND_LESSON_FOR_MODULE";
 export const FIND_LESSON = "FIND_LESSON";
@@ -7,6 +9,16 @@ export const DELETE_LESSON = "DELETE_LESSON";
 export const createLesson = (lesson) => ({
     type: CREATE_LESSON,
     newLesson: lesson
+});
+
+export const findLessonsForModule = (lessons) => ({
+    type: FIND_LESSON_FOR_MODULE,
+    lessons: lessons
+});
+
+export const findLessons = (lessons) => ({
+    type: FIND_LESSON,
+    lessons: lessons
 });
 
 export const updateLesson = (lessonId, lesson) => ({
