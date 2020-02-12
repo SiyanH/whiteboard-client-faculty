@@ -31,6 +31,11 @@
     background-color: #3f454b;
 }
 
+.wbdv-module-item .wbdv-delete {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
 .wbdv-topic-pill.btn-secondary:not(:disabled).active {
     background-color: #3c3c3c;
 }

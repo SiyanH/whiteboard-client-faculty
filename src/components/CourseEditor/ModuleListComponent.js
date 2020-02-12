@@ -7,12 +7,13 @@ import {
     findModulesForCourse,
     findModules,
     updateModule,
-    deleteModule
+    deleteModule,
+    setCurrentModuleId
 } from "../../actions/moduleActions";
+import ModuleListItemComponent from "./ModuleListItemComponent";
 
 class ModuleListComponent extends React.Component {
     state = {
-        editing: false,
         newModuleTitle: "New Module"
     };
 
@@ -27,19 +28,13 @@ class ModuleListComponent extends React.Component {
                     {
                         this.props.modules && this.props.modules.map(
                             module =>
-                                <div key={module._id}
-                                     className="d-flex align-items-center justify-content-between
-                                            list-group-item list-group-item-action wbdv-module-item">
-                                    <div title={module.title}
-                                         className="wbdv-module-item-title text-white d-inline-block">
-                                        {module.title}</div>
-                                    <button
-                                        aria-label="Delete" title="Delete" type="button"
-                                        className="close text-white wbdv-module-item-delete-btn"
-                                        onClick={() => this.props.deleteModule(module._id)}>
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>)
+                                <ModuleListItemComponent key={module._id}
+                                                         module={module}
+                                                         updateModule={this.props.updateModule}
+                                                         deleteModule={this.props.deleteModule}
+                                                         setCurrentModuleId={this.props.setCurrentModuleId}
+                                                         isCurrentModule={this.props.currentModuleId
+                                                                          === module._id}/>)
                     }
                 </div>
                 <form className="d-flex align-items-center">
@@ -69,7 +64,8 @@ class ModuleListComponent extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        modules: state.modules.modules
+        modules: state.modules.modules,
+        currentModuleId: state.modules.currentModuleId
     }
 };
 
@@ -86,10 +82,12 @@ const dispatchToPropertyMapper = (dispatch) => {
                 .then(actualModules => dispatch(findModules(actualModules))),
         updateModule: (moduleId, module) =>
             moduleService.updateModule(moduleId, module)
-                .then(actualModule => dispatch(updateModule(moduleId, actualModule))),
+                .then(status => dispatch(updateModule(moduleId, module))),
         deleteModule: (moduleId) =>
             moduleService.deleteModule(moduleId)
-                .then(status => dispatch(deleteModule(moduleId)))
+                .then(status => dispatch(deleteModule(moduleId))),
+        setCurrentModuleId: (moduleId) =>
+            dispatch(setCurrentModuleId(moduleId))
     }
 };
 

@@ -3,11 +3,13 @@ import {
     FIND_MODULE_FOR_COURSE,
     FIND_MODULE,
     UPDATE_MODULE,
-    DELETE_MODULE
+    DELETE_MODULE,
+    CURRENT_MODULE
 } from "../actions/moduleActions";
 
 const initialState = {
-    modules: []
+    modules: [],
+    currentModuleId: -1
 };
 
 const moduleReducer = (state = initialState, action) => {
@@ -35,6 +37,11 @@ const moduleReducer = (state = initialState, action) => {
         case DELETE_MODULE:
             return {
                 modules: state.modules.filter(module => module._id !== action.moduleId)
+            };
+        case CURRENT_MODULE:
+            return {
+                ...state,
+                currentModuleId: action.moduleId
             };
         default:
             return state
