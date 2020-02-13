@@ -115,17 +115,20 @@
     margin-right: 10px;
 }
 
-.wbdv-lesson-tab-item .title-edit-field {
+.wbdv-lesson-tab-item .title-edit-field, .wbdv-topic-pill .title-edit-field {
     width: 98%;
 }
 
-.wbdv-topic-pill-list {
-    margin-top: 15px;
+.wbdv-topic-pill-item {
+    margin-right: 15px;
 }
 
-.wbdv-topic-pill-list button {
-    margin-right: 14px;
-    margin-bottom: 10px;
+.wbdv-topic-pill .wbdv-topic-title {
+    margin-right: 10px;
+}
+
+.wbdv-topic-button-group .wbdv-delete {
+    margin-right: 7px;
 }
 
 .wbdv-widget-form-inline {

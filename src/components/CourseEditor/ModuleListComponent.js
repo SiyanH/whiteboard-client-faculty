@@ -12,7 +12,7 @@ import {
 } from "../../actions/moduleActions";
 import ModuleListItemComponent from "./ModuleListItemComponent";
 import lessonService from "../../services/LessonService";
-import {findLessonsForModule} from "../../actions/lessonActions";
+import {findLessonsForModule, setCurrentLessonId} from "../../actions/lessonActions";
 
 class ModuleListComponent extends React.Component {
     state = {
@@ -36,6 +36,7 @@ class ModuleListComponent extends React.Component {
                                                          deleteModule={this.props.deleteModule}
                                                          findLessonsForModule={this.props.findLessonsForModule}
                                                          setCurrentModuleId={this.props.setCurrentModuleId}
+                                                         setCurrentLessonId={this.props.setCurrentLessonId}
                                                          isCurrentModule={this.props.currentModuleId
                                                                           === module._id}/>)
                     }
@@ -91,6 +92,8 @@ const dispatchToPropertyMapper = (dispatch) => {
                 .then(status => dispatch(deleteModule(moduleId))),
         setCurrentModuleId: (moduleId) =>
             dispatch(setCurrentModuleId(moduleId)),
+        setCurrentLessonId: (lessonId) =>
+            dispatch(setCurrentLessonId(lessonId)),
         findLessonsForModule: (moduleId) =>
             lessonService.findLessonsForModule(moduleId)
                 .then(actualLessons => dispatch(findLessonsForModule(actualLessons)))

@@ -23,7 +23,11 @@ class LessonTabItemsComponent extends React.Component {
             <li className="nav-item wbdv-lesson-tab-item">
                 <div className={`nav-link text-white d-flex
                      ${this.props.isCurrentLesson ? "bg-dark" : "bg-secondary"}`}
-                     onClick={() => this.props.setCurrentLessonId(this.props.lesson._id)}>
+                     onClick={() => {
+                         this.props.setCurrentTopicId(-1);
+                         this.props.setCurrentLessonId(this.props.lesson._id);
+                         this.props.findTopicsForLesson(this.props.lesson._id);
+                     }}>
                     <div>
                         {
                             !this.state.editing &&
@@ -48,8 +52,10 @@ class LessonTabItemsComponent extends React.Component {
                                role="button" title="Delete"
                                onClick={() => {
                                    this.props.deleteLesson(this.props.lesson._id)
-                                       .then(r => this.props.findLessonsForModule(
-                                           this.props.moduleId));
+                                       .then(r => {
+                                           this.props.findLessonsForModule(this.props.moduleId);
+                                           this.props.setCurrentLessonId(-1);
+                                       });
                                }}></i>
                         }
                         {

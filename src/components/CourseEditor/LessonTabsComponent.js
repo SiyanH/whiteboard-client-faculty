@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Lesson from "../../models/LessonModel";
+import topicService from "../../services/TopicService";
 import lessonService from "../../services/LessonService";
 import LessonTabItemsComponent from "./LessonTabItemsComponent";
 import {
@@ -10,13 +11,14 @@ import {
     updateLesson,
     findLessonsForModule
 } from "../../actions/lessonActions";
+import {findTopicsForLesson, setCurrentTopicId} from "../../actions/topicActions";
 
 class LessonTabsComponent extends React.Component {
     render() {
         return (
             <div>
                 {
-                    this.props.lessons.length > 0 &&
+                    this.props.lessons.length > 0 && this.props.currentModuleId !== -1 &&
                     <ul className="nav nav-tabs wbdv-lesson-tabs">
                         {
                             this.props.lessons.map(
@@ -27,7 +29,9 @@ class LessonTabsComponent extends React.Component {
                                                              updateLesson={this.props.updateLesson}
                                                              deleteLesson={this.props.deleteLesson}
                                                              findLessonsForModule={this.props.findLessonsForModule}
+                                                             findTopicsForLesson={this.props.findTopicsForLesson}
                                                              setCurrentLessonId={this.props.setCurrentLessonId}
+                                                             setCurrentTopicId={this.props.setCurrentTopicId}
                                                              isCurrentLesson={this.props.currentLessonId
                                                                               === lesson._id}/>)
                         }
@@ -42,7 +46,7 @@ class LessonTabsComponent extends React.Component {
                     </ul>
                 }
                 {
-                    this.props.lessons.length === 0 &&
+                    this.props.lessons.length === 0 && this.props.currentModuleId !== -1 &&
                     <button className="nav-link btn btn-secondary wbdv-lesson-tab-btn-only"
                             title="Add new lesson"
                             onClick={() => this.props.createLesson(
@@ -81,7 +85,12 @@ const dispatchToPropertyMapper = (dispatch) => {
             lessonService.deleteLesson(lessonId)
                 .then(status => dispatch(deleteLesson(lessonId))),
         setCurrentLessonId: (lessonId) =>
-            dispatch(setCurrentLessonId(lessonId))
+            dispatch(setCurrentLessonId(lessonId)),
+        setCurrentTopicId: (topicId) =>
+            dispatch(setCurrentTopicId(topicId)),
+        findTopicsForLesson: (lessonId) =>
+            topicService.findTopicsForLesson(lessonId)
+                .then(actualTopics => dispatch(findTopicsForLesson(actualTopics)))
     }
 };
 

@@ -24,8 +24,9 @@ class ModuleListItemComponent extends React.Component {
                             list-group-item-action wbdv-module-item 
                             ${this.props.isCurrentModule && "active"}`}
                  onClick={() => {
-                     this.props.setCurrentModuleId(this.props.module._id);
                      this.props.findLessonsForModule(this.props.module._id);
+                     this.props.setCurrentModuleId(this.props.module._id);
+                     this.props.setCurrentLessonId(-1);
                  }}>
                 {
                     !this.state.editing &&
@@ -49,7 +50,9 @@ class ModuleListItemComponent extends React.Component {
                         this.props.isCurrentModule && this.state.editing &&
                         <i className="fas fa-times text-white wbdv-button wbdv-delete"
                            role="button" title="Delete"
-                           onClick={() => this.props.deleteModule(this.props.module._id)}></i>
+                           onClick={() => this.props.deleteModule(this.props.module._id)
+                               .then(r => this.props.setCurrentModuleId(-1))
+                           }></i>
                     }
                     {
                         this.props.isCurrentModule && this.state.editing &&
