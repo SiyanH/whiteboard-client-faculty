@@ -28,7 +28,7 @@ class LessonTabItemsComponent extends React.Component {
                          this.props.setCurrentLessonId(this.props.lesson._id);
                          this.props.findTopicsForLesson(this.props.lesson._id);
                      }}>
-                    <div>
+                    <div className="wbdv-lesson-title">
                         {
                             !this.state.editing &&
                             <span title={this.state.lesson.title}>{this.state.lesson.title}</span>

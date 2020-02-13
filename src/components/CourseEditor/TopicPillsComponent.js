@@ -30,7 +30,7 @@ class TopicPillsComponent extends React.Component {
                                                             isCurrentTopic={this.props.currentTopicId
                                                                             === topic._id}/>)
                         }
-                        <li className="nav-item wbdv-topic-add-btn btn btn-secondary"
+                        <li className="nav-item wbdv-topic-pill-item wbdv-topic-add-btn btn btn-secondary"
                             title="Add new topic" role="button"
                             onClick={() => this.props.createTopic(this.props.currentLessonId,
                                                                   new Topic("New Topic"))}>

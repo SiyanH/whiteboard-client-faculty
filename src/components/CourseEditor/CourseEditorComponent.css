@@ -120,7 +120,8 @@
 }
 
 .wbdv-topic-pill-item {
-    margin-right: 15px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .wbdv-topic-pill .wbdv-topic-title {
@@ -146,6 +147,18 @@
 .wbdv-widget-add-btn {
     margin-right: 10px;
     margin-bottom: 15px;
+}
+
+.wbdv-lesson-tab-item .wbdv-lesson-title, .wbdv-topic-pill-item .wbdv-topic-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wbdv-lesson-tab-item, .wbdv-topic-pill-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .wbdv-lesson-tab-btn-only {

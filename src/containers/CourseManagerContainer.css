@@ -45,12 +45,15 @@
     border-radius: 0;
 }
 
-.wbdv-row.wbdv-title {
-    color: inherit;
-    font-weight: 500;
+.wbdv-row.wbdv-course .list-group-item a {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.wbdv-row.wbdv-title {
+    color: inherit;
+    font-weight: 500;
 }
 
 .wbdv-row.wbdv-owner, .wbdv-row.wbdv-modified-date {
