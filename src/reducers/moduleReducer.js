@@ -4,7 +4,8 @@ import {
     FIND_MODULE,
     UPDATE_MODULE,
     DELETE_MODULE,
-    CURRENT_MODULE
+    CURRENT_MODULE,
+    RESET_MODULE
 } from "../actions/moduleActions";
 
 const initialState = {
@@ -48,6 +49,8 @@ const moduleReducer = (state = initialState, action) => {
                 ...state,
                 currentModuleId: action.moduleId
             };
+        case RESET_MODULE:
+            return initialState;
         default:
             return state
     }

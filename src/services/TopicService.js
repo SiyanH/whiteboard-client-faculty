@@ -36,7 +36,7 @@ export const updateTopic = async (topicId, topic) => {
 };
 
 /** Remove topic whose ID is topicId **/
-export const deleteLesson = async (topicId) => {
+export const deleteTopic = async (topicId) => {
     const response = await fetch(`${API_URL_TOPIC}/${topicId}`, {method: 'DELETE'});
     return await response.json();
 };
@@ -46,5 +46,5 @@ export default {
     findTopicsForLesson,
     findTopic,
     updateTopic,
-    deleteLesson
+    deleteTopic
 }

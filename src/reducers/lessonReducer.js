@@ -4,7 +4,8 @@ import {
     FIND_LESSON,
     UPDATE_LESSON,
     DELETE_LESSON,
-    CURRENT_LESSON
+    CURRENT_LESSON,
+    RESET_LESSON
 } from "../actions/lessonActions";
 
 const initialState = {
@@ -48,6 +49,8 @@ const lessonReducer = (state = initialState, action) => {
                 ...state,
                 currentLessonId: action.lessonId
             };
+        case RESET_LESSON:
+            return initialState;
         default:
             return state
     }

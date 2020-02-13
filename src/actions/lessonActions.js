@@ -4,6 +4,7 @@ export const FIND_LESSON = "FIND_LESSON";
 export const UPDATE_LESSON = "UPDATE_LESSON";
 export const DELETE_LESSON = "DELETE_LESSON";
 export const CURRENT_LESSON = "CURRENT_LESSON";
+export const RESET_LESSON = "RESET_LESSON";
 
 export const createLesson = (lesson) => ({
     type: CREATE_LESSON,
@@ -34,4 +35,8 @@ export const deleteLesson = (lessonId) => ({
 export const setCurrentLessonId = (lessonId) => ({
     type: CURRENT_LESSON,
     lessonId: lessonId
+});
+
+export const resetLessons = () => ({
+    type: RESET_LESSON
 });
