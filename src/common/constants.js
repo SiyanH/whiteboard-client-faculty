@@ -4,3 +4,5 @@ export const API_URL_COURSE = `${BASE_URL}/courses`;
 export const API_URL_MODULE = `${BASE_URL}/modules`;
 export const API_URL_LESSON = `${BASE_URL}/lessons`;
 export const API_URL_TOPIC = `${BASE_URL}/topics`;
+
+export const API_URL = "https://cs5610-sp20-springboot-siyanhe.herokuapp.com/api";
