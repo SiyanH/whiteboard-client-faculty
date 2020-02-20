@@ -29,7 +29,7 @@ export const findWidgetById = (wid) => {
 
 /** Update one widget whose ID is wid **/
 export const updateWidget = async (wid, widget) => {
-    const response = await fetch(`${API_URI}/widgets/${wid}`, {
+    const response = await fetch(`${API_URL}/widgets/${wid}`, {
         method: 'PUT',
         body: JSON.stringify(widget),
         headers: {
@@ -45,11 +45,24 @@ export const deleteWidget = async (wid) => {
     return await response.json();
 };
 
+/** Replace all widgets with the given widgets **/
+export const saveAllWidgets = async (widgets) => {
+    const response = await fetch(`${API_URL}/widgets`, {
+        method: 'PUT',
+        body: JSON.stringify(widgets),
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+    return await response.json();
+};
+
 export default {
     createWidget,
     findWidgetsForTopic,
     findAllWidgets,
     findWidgetById,
     updateWidget,
-    deleteWidget
+    deleteWidget,
+    saveAllWidgets
 }

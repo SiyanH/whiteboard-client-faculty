@@ -5,17 +5,20 @@ import {
     FIND_ALL_WIDGETS_FOR_TOPIC,
     FIND_ALL_WIDGETS,
     FIND_WIDGET,
-    RESET_WIDGET
+    RESET_WIDGET,
+    SAVE_ALL_WIDGETS
 } from "../actions/widgetActions";
 
 const initialState = {
-    widgets: []
+    widgets: [],
+    widget: {}
 };
 
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_WIDGET:
             return {
+                ...state,
                 widgets: [
                     ...state.widgets,
                     action.newWidget
@@ -23,6 +26,7 @@ const widgetReducer = (state = initialState, action) => {
             };
         case DELETE_WIDGET:
             return {
+                ...state,
                 widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
             };
         case UPDATE_WIDGET:
@@ -33,18 +37,26 @@ const widgetReducer = (state = initialState, action) => {
             };
         case FIND_ALL_WIDGETS_FOR_TOPIC:
             return {
+                ...state,
                 widgets: action.widgets
             };
         case FIND_ALL_WIDGETS:
             return {
+                ...state,
                 widgets: action.widgets
             };
         case FIND_WIDGET:
             return {
+                ...state,
                 widget: action.widget
             };
         case RESET_WIDGET:
             return initialState;
+        case SAVE_ALL_WIDGETS:
+            return {
+                ...state,
+                widgets: action.widgets
+            };
         default:
             return state
     }

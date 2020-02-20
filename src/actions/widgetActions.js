@@ -5,6 +5,7 @@ export const FIND_ALL_WIDGETS_FOR_TOPIC = "FIND_ALL_WIDGETS_FOR_TOPIC";
 export const FIND_ALL_WIDGETS = "FIND_ALL_WIDGETS";
 export const FIND_WIDGET = "FIND_WIDGET";
 export const RESET_WIDGET = "RESET_WIDGET";
+export const SAVE_ALL_WIDGETS = "SAVE_ALL_WIDGETS";
 
 export const createWidget = (widget) => ({
     type: CREATE_WIDGET,
@@ -39,4 +40,9 @@ export const findWidget = (widget) => ({
 
 export const resetWidgets = () => ({
     type: RESET_WIDGET
+});
+
+export const saveAllWidgets = (widgets) => ({
+    type: SAVE_ALL_WIDGETS,
+    widgets: widgets
 });
