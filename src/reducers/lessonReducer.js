@@ -37,12 +37,12 @@ const lessonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 lessons: state.lessons.map(
-                    lesson => lesson._id === lesson.lessonId ? action.lesson : lesson)
+                    lesson => lesson._id === action.lessonId ? action.lesson : lesson)
             };
         case DELETE_LESSON:
             return {
                 ...state,
-                lessons: state.lessons.filter(lesson => lesson._id !== lesson.lessonId)
+                lessons: state.lessons.filter(lesson => lesson._id !== action.lessonId)
             };
         case CURRENT_LESSON:
             return {
