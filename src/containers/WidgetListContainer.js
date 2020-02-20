@@ -1,54 +1,81 @@
 import React from "react";
 import {connect} from "react-redux";
-import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
-import widgetService from "../../services";
+import widgetService from "../services/WidgetService";
 import {
     createWidget,
     deleteWidget,
     findAllWidgets,
     findWidgetsForTopic,
-    updateWidget
-} from "../../actions/widgetActions";
-import WidgetComponent from "./widgets/WidgetComponent";
+    updateWidget,
+    saveAllWidgets
+} from "../actions/widgetActions";
+import WidgetComponent from "../components/CourseEditor/widgets/WidgetComponent";
 
-class WidgetListComponent extends React.Component {
-    componentDidMount() {
-        this.props.findWidgetsForTopic(this.props.topicId);
-    }
-
+class WidgetListContainer extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.topicId !== this.props.topicId) {
-            this.props.findWidgetsForTopic(this.props.topicId);
+        if (prevProps.topicId !== this.props.topicId || prevProps.widgets.length
+            !== this.props.widgets.length) {
+            this.props.findWidgetsForTopic(this.props.topicId)
+                .then(() => this.setState({widgets: this.props.widgets}))
         }
     }
 
     state = {
-        widget: this.props.widgets
+        widgets: this.props.widgets,
+        isPreview: false
     };
 
     save = () => {
+        this.props.saveAllWidgets(this.state.widgets).then();
+    };
+
+    toggleReview = () => {
         this.setState({
-                          widget: {}
+                          isPreview: !this.state.isPreview
+                      })
+    };
+
+    updateWidgets = () => {
+        this.setState({
+                          widgets: this.state.widgets
                       })
     };
 
     render() {
         return (
             <div>
-                <div className="d-flex align-items-center float-right wbdv-widget-list-btn-top">
-                    <button className="btn btn-sm btn-success wbdv-widget-save-btn"
-                            type="button">Save
-                    </button>
-                    <div
-                        className="custom-control custom-control-right custom-switch">
-                        <input className="custom-control-input" data-size="xs"
-                               id="previewSwitch"
-                               type="checkbox"/>
-                        <label className="custom-control-label"
-                               htmlFor="previewSwitch">Preview</label>
+                {
+                    this.props.widgets.length > 0 &&
+                    <div className="d-flex align-items-center float-right wbdv-widget-list-btn-top">
+                        <button className="btn btn-sm btn-success wbdv-widget-save-btn"
+                                type="button"
+                                onClick={this.save}>Save
+                        </button>
+                        <div className="custom-control custom-control-right custom-switch">
+                            <input className="custom-control-input" data-size="xs"
+                                   id="previewSwitch" type="checkbox"/>
+                            <label className="custom-control-label"
+                                   htmlFor="previewSwitch"
+                                   onClick={this.toggleReview}>Preview</label>
+                        </div>
                     </div>
-                </div>
-                <WidgetComponent widget={this.state.widget}/>
+                }
+                {
+                    this.state.widgets.map(
+                        widget => <WidgetComponent key={widget.id}
+                                                   widget={widget}
+                                                   isPreview={this.state.isPreview}
+                                                   deleteWidget={this.props.deleteWidget}
+                                                   updateWidgets={this.updateWidgets}/>)
+                }
+                {
+                    this.props.topicId !== -1 &&
+                    <button className="btn btn-danger float-right wbdv-widget-add-btn"
+                            title="Add new widget" type="button"
+                            onClick={() => this.props.createWidget(this.props.topicId, {})}>
+                        <i className="fas fa-plus-circle fa-sm"></i>
+                    </button>
+                }
             </div>
         )
     }
@@ -56,8 +83,8 @@ class WidgetListComponent extends React.Component {
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        createWidget: (widgetId, widget) =>
-            widgetService.createWidget(widgetId, widget)
+        createWidget: (topicId, widget) =>
+            widgetService.createWidget(topicId, widget)
                 .then(actualWidget => dispatch(createWidget(actualWidget))),
         findWidgetsForTopic: (topicId) =>
             widgetService.findWidgetsForTopic(topicId)
@@ -71,15 +98,18 @@ const dispatchToPropertyMapper = (dispatch) => {
         deleteWidget: (widgetId) =>
             widgetService.deleteWidget(widgetId)
                 .then(status => dispatch(deleteWidget(widgetId))),
+        saveAllWidgets: (widgets) =>
+            widgetService.saveAllWidgets(widgets)
+                .then(status => dispatch(saveAllWidgets(widgets)))
     }
 };
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgets.widgets,
-    topicId: state.topics.topics.currentTopicId
+    topicId: state.topics.currentTopicId
 });
 
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper)
-(WidgetListComponent);
+(WidgetListContainer);

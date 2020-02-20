@@ -9,6 +9,8 @@ import {
     findTopicsForLesson, setCurrentTopicId,
     updateTopic
 } from "../../actions/topicActions";
+import widgetService from "../../services/WidgetService";
+import {findWidgetsForTopic} from "../../actions/widgetActions";
 
 class TopicPillsComponent extends React.Component {
     render() {
@@ -26,6 +28,7 @@ class TopicPillsComponent extends React.Component {
                                                             updateTopic={this.props.updateTopic}
                                                             deleteTopic={this.props.deleteTopic}
                                                             findTopicsForLesson={this.props.findTopicsForLesson}
+                                                            findWidgetsForTopic={this.props.findWidgetsForTopic}
                                                             setCurrentTopicId={this.props.setCurrentTopicId}
                                                             isCurrentTopic={this.props.currentTopicId
                                                                             === topic._id}/>)
@@ -69,6 +72,9 @@ const dispatchToPropertyMapper = (dispatch) => {
         findTopicsForLesson: (lessonId) =>
             topicService.findTopicsForLesson(lessonId)
                 .then(actualTopics => dispatch(findTopicsForLesson(actualTopics))),
+        findWidgetsForTopic: (topicId) =>
+            widgetService.findWidgetsForTopic(topicId)
+                .then(actualWidgets => dispatch(findWidgetsForTopic(actualWidgets))),
         findTopics: (topicId) =>
             topicService.findTopic(topicId)
                 .then(actualTopics => dispatch(findTopics(actualTopics))),

@@ -23,7 +23,10 @@ class TopicPillItemComponent extends React.Component {
             <li className="nav-item wbdv-topic-pill-item">
                 <div className={`wbdv-topic-pill btn btn-secondary d-flex 
                      ${this.props.isCurrentTopic && "active"}`}
-                     onClick={() => this.props.setCurrentTopicId(this.props.topic._id)}>
+                     onClick={() => {
+                         this.props.setCurrentTopicId(this.props.topic._id);
+                         this.props.findWidgetsForTopic(this.props.topic._id);
+                     }}>
                     <div className="wbdv-topic-title">
                         {
                             !this.state.editing &&

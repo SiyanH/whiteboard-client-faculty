@@ -145,6 +145,8 @@
 }
 
 .wbdv-widget-add-btn {
+    clear: both;
+    margin-top: 15px;
     margin-right: 10px;
     margin-bottom: 15px;
 }
@@ -163,6 +165,10 @@
 
 .wbdv-lesson-tab-btn-only {
     margin-top: 20px;
+}
+
+.wbdv-widget-list-btn-top {
+    margin-bottom: 15px;
 }
 
 #widgetType {
