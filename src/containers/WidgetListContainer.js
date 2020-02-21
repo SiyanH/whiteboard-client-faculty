@@ -52,11 +52,20 @@ class WidgetListContainer extends React.Component {
                                 onClick={this.save}>Save
                         </button>
                         <div className="custom-control custom-control-right custom-switch">
-                            <input className="custom-control-input" data-size="xs"
-                                   id="previewSwitch" type="checkbox"/>
+                            {
+                                this.state.isPreview &&
+                                <input className="custom-control-input" data-size="xs"
+                                       id="previewSwitch" type="checkbox" checked
+                                       onChange={this.toggleReview}/>
+                            }
+                            {
+                                !this.state.isPreview &&
+                                <input className="custom-control-input" data-size="xs"
+                                       id="previewSwitch" type="checkbox"
+                                       onChange={this.toggleReview}/>
+                            }
                             <label className="custom-control-label"
-                                   htmlFor="previewSwitch"
-                                   onClick={this.toggleReview}>Preview</label>
+                                   htmlFor="previewSwitch">Preview</label>
                         </div>
                     </div>
                 }
