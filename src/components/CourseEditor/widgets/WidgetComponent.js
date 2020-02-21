@@ -11,16 +11,24 @@ class WidgetComponent extends React.Component {
                     <HeadingWidgetComponent
                         widget={this.props.widget}
                         isPreview={this.props.isPreview}
+                        isTopWidget={this.props.isTopWidget}
+                        isBottomWidget={this.props.isBottomWidget}
                         deleteWidget={this.props.deleteWidget}
-                        updateWidgets={this.props.updateWidgets}/>
+                        updateWidgets={this.props.updateWidgets}
+                        moveUp={this.props.moveUp}
+                        moveDown={this.props.moveDown}/>
                 }
                 {
                     this.props.widget.type === "PARAGRAPH" &&
                     <ParagraphWidgetComponent
                         widget={this.props.widget}
                         isPreview={this.props.isPreview}
+                        isTopWidget={this.props.isTopWidget}
+                        isBottomWidget={this.props.isBottomWidget}
                         deleteWidget={this.props.deleteWidget}
-                        updateWidgets={this.props.updateWidgets}/>
+                        updateWidgets={this.props.updateWidgets}
+                        moveUp={this.props.moveUp}
+                        moveDown={this.props.moveDown}/>
                 }
             </div>
         )

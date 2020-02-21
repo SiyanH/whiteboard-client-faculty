@@ -12,6 +12,11 @@ import {
 import WidgetComponent from "../components/CourseEditor/widgets/WidgetComponent";
 
 class WidgetListContainer extends React.Component {
+    state = {
+        widgets: this.props.widgets,
+        isPreview: false
+    };
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topicId !== this.props.topicId || prevProps.widgets.length
             !== this.props.widgets.length) {
@@ -19,11 +24,6 @@ class WidgetListContainer extends React.Component {
                 .then(() => this.setState({widgets: this.props.widgets}))
         }
     }
-
-    state = {
-        widgets: this.props.widgets,
-        isPreview: false
-    };
 
     save = () => {
         this.props.saveAllWidgets(this.state.widgets).then();
@@ -39,6 +39,26 @@ class WidgetListContainer extends React.Component {
         this.setState({
                           widgets: this.state.widgets
                       })
+    };
+
+    moveUp = (widget) => {
+        let widgetBefore = this.state.widgets[widget.order - 1];
+
+        widgetBefore.order++;
+        widget.order--;
+        this.state.widgets.splice(widget.order, 2, widget, widgetBefore);
+
+        this.updateWidgets();
+    };
+
+    moveDown = (widget) => {
+        let widgetAfter = this.state.widgets[widget.order + 1];
+
+        widgetAfter.order--;
+        widget.order++;
+        this.state.widgets.splice(widgetAfter.order, 2, widgetAfter, widget);
+
+        this.updateWidgets();
     };
 
     render() {
@@ -71,11 +91,17 @@ class WidgetListContainer extends React.Component {
                 }
                 {
                     this.state.widgets.map(
-                        widget => <WidgetComponent key={widget.id}
-                                                   widget={widget}
-                                                   isPreview={this.state.isPreview}
-                                                   deleteWidget={this.props.deleteWidget}
-                                                   updateWidgets={this.updateWidgets}/>)
+                        (widget, index, widgets) =>
+                            <WidgetComponent
+                                key={widget.id}
+                                widget={widget}
+                                isPreview={this.state.isPreview}
+                                isTopWidget={index === 0}
+                                isBottomWidget={index > 0 && index === widgets.length - 1}
+                                deleteWidget={this.props.deleteWidget}
+                                updateWidgets={this.updateWidgets}
+                                moveUp={this.moveUp}
+                                moveDown={this.moveDown}/>)
                 }
                 {
                     this.props.topicId !== -1 &&

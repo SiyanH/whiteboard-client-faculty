@@ -31,8 +31,12 @@ export default class HeadingWidgetComponent extends React.Component {
                         !this.props.isPreview &&
                         <div>
                             <WidgetButtonGroupComponent widget={this.props.widget}
+                                                        isTopWidget={this.props.isTopWidget}
+                                                        isBottomWidget={this.props.isBottomWidget}
                                                         deleteWidget={this.props.deleteWidget}
-                                                        updateWidgets={this.props.updateWidgets}/>
+                                                        updateWidgets={this.props.updateWidgets}
+                                                        moveUp={this.props.moveUp}
+                                                        moveDown={this.props.moveDown}/>
                             <form name="headingWidget">
                                 <div className="form-group">
                                     <label className="sr-only"

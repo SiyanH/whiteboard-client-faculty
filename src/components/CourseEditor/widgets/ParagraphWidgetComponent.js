@@ -1,5 +1,6 @@
 import React from "react";
 import WidgetButtonGroupComponent from "./WidgetButtonGroupComponent";
+import HeadingWidgetComponent from "./HeadingWidgetComponent";
 
 export default class ParagraphWidgetComponent extends React.Component {
     state = {
@@ -26,7 +27,11 @@ export default class ParagraphWidgetComponent extends React.Component {
                         <div>
                             <WidgetButtonGroupComponent widget={this.props.widget}
                                                         deleteWidget={this.props.deleteWidget}
-                                                        updateWidgets={this.props.updateWidgets}/>
+                                                        updateWidgets={this.props.updateWidgets}
+                                                        isTopWidget={this.props.isTopWidget}
+                                                        isBottomWidget={this.props.isBottomWidget}
+                                                        moveUp={this.props.moveUp}
+                                                        moveDown={this.props.moveDown}/>
                             <form name="paragraphWidget">
                                 <div className="form-group">
                                     <label className="sr-only"

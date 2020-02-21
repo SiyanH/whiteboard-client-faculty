@@ -1,19 +1,26 @@
 import React from "react";
 
-const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets}) =>
+const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopWidget,
+                                        isBottomWidget, moveUp, moveDown}) =>
     <div className="row no-gutters">
         <h4 className="col-md-4" title="Heading widget">
             {widget.type.charAt(0) + widget.type.slice(1).toLowerCase()} widget</h4>
         <form
             className="form-inline wbdv-widget-form-inline d-flex justify-content-sm-end col-md-8">
-            <button className="btn btn-warning"
-                    title="Move up" type="button">
-                <i className="fas fa-arrow-up fa-sm"></i>
-            </button>
-            <button className="btn btn-warning"
-                    title="Move down" type="button">
-                <i className="fas fa-arrow-down fa-sm"></i>
-            </button>
+            {
+                !isTopWidget &&
+                <button className="btn btn-warning" title="Move up" type="button"
+                onClick={() => moveUp(widget)}>
+                    <i className="fas fa-arrow-up fa-sm"></i>
+                </button>
+            }
+            {
+                !isBottomWidget &&
+                <button className="btn btn-warning" title="Move down" type="button"
+                onClick={() => moveDown(widget)}>
+                    <i className="fas fa-arrow-down fa-sm"></i>
+                </button>
+            }
             <label className="sr-only" htmlFor={`widgetType_${widget.id}`}>Widget Type</label>
             <select className="form-control" id={`widgetType_${widget.id}`} title="Widget type"
                     defaultValue={widget.type}
