@@ -1,6 +1,5 @@
 import React from "react";
 import WidgetButtonGroupComponent from "./WidgetButtonGroupComponent";
-import HeadingWidgetComponent from "./HeadingWidgetComponent";
 
 export default class ParagraphWidgetComponent extends React.Component {
     state = {

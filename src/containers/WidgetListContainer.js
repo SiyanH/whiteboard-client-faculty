@@ -18,11 +18,11 @@ class WidgetListContainer extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.topicId !== this.props.topicId || prevProps.widgets.length
-            !== this.props.widgets.length) {
+        if (prevProps.topicId !== this.props.topicId) {
             this.props.findWidgetsForTopic(this.props.topicId)
                 .then(() => this.setState({widgets: this.props.widgets}))
         }
+        console.log(this.props.widgets)
     }
 
     save = () => {
@@ -39,6 +39,28 @@ class WidgetListContainer extends React.Component {
         this.setState({
                           widgets: this.state.widgets
                       })
+    };
+
+    createWidget = () => {
+        this.props.createWidget(this.props.topicId, {})
+            .then(res => {
+                this.state.widgets.push(res.newWidget);
+                this.updateWidgets();
+            });
+    };
+
+    deleteWidget = (widget) => {
+        this.props.deleteWidget(widget.id)
+            .then(() => this.setState({
+                                          widgets:  this.state.widgets
+                                              .filter(w => w.id !== widget.id)
+                                              .map(w => {
+                                                  if (w.order > widget.order) {
+                                                      w.order--;
+                                                  }
+                                                  return w;
+                                              })
+                                      }))
     };
 
     moveUp = (widget) => {
@@ -98,7 +120,7 @@ class WidgetListContainer extends React.Component {
                                 isPreview={this.state.isPreview}
                                 isTopWidget={index === 0}
                                 isBottomWidget={index > 0 && index === widgets.length - 1}
-                                deleteWidget={this.props.deleteWidget}
+                                deleteWidget={this.deleteWidget}
                                 updateWidgets={this.updateWidgets}
                                 moveUp={this.moveUp}
                                 moveDown={this.moveDown}/>)
@@ -107,7 +129,7 @@ class WidgetListContainer extends React.Component {
                     this.props.topicId !== -1 &&
                     <button className="btn btn-danger float-right wbdv-widget-add-btn"
                             title="Add new widget" type="button"
-                            onClick={() => this.props.createWidget(this.props.topicId, {})}>
+                            onClick={() => this.createWidget(this.props.topicId, {})}>
                         <i className="fas fa-plus-circle fa-sm"></i>
                     </button>
                 }

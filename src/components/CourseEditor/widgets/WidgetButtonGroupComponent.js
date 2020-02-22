@@ -36,7 +36,7 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
                 <option value="VIDEO">Video</option>
             </select>
             <button className="btn btn-danger" title="Delete widget" type="button"
-                    onClick={() => deleteWidget(widget.id)}>
+                    onClick={() => deleteWidget(widget)}>
                 <i className="fas fa-times fa-sm"></i>
             </button>
         </form>
