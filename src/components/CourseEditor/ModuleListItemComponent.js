@@ -27,6 +27,7 @@ class ModuleListItemComponent extends React.Component {
                      this.props.findLessonsForModule(this.props.module._id);
                      this.props.setCurrentModuleId(this.props.module._id);
                      this.props.setCurrentLessonId(-1);
+                     this.props.setCurrentTopicId(-1);
                  }}>
                 {
                     !this.state.editing &&
