@@ -1,3 +1,8 @@
+.empty-bar {
+    height: 8px;
+    width: 100%;
+}
+
 .wbdv-btn-hover-shadow:hover {
     background-color: rgba(105, 105, 105, 0.5);
 }

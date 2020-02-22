@@ -21,6 +21,7 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
                     <i className="fas fa-arrow-down fa-sm"></i>
                 </button>
             }
+            <div className="empty-bar d-block d-sm-none"></div>
             <label className="sr-only" htmlFor={`widgetType_${widget.id}`}>Widget Type</label>
             <select className="form-control" id={`widgetType_${widget.id}`} title="Widget type"
                     defaultValue={widget.type}
@@ -35,6 +36,7 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
                 <option value="HYPERLINK" disabled>Hyperlink</option>
                 <option value="VIDEO" disabled>Video</option>
             </select>
+            <div className="empty-bar d-block d-sm-none"></div>
             <button className="btn btn-danger" title="Delete widget" type="button"
                     onClick={() => deleteWidget(widget)}>
                 <i className="fas fa-times fa-sm"></i>
