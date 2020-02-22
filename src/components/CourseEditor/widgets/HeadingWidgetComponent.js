@@ -33,6 +33,7 @@ export default class HeadingWidgetComponent extends React.Component {
                             <WidgetButtonGroupComponent widget={this.props.widget}
                                                         isTopWidget={this.props.isTopWidget}
                                                         isBottomWidget={this.props.isBottomWidget}
+                                                        hasWidgetAfter={this.props.hasWidgetAfter}
                                                         deleteWidget={this.props.deleteWidget}
                                                         updateWidgets={this.props.updateWidgets}
                                                         moveUp={this.props.moveUp}

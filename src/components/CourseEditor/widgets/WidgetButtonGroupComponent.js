@@ -1,7 +1,7 @@
 import React from "react";
 
 const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopWidget,
-                                        isBottomWidget, moveUp, moveDown}) =>
+                                        isBottomWidget, moveUp, moveDown, hasWidgetAfter}) =>
     <div className="row no-gutters">
         <h4 className="col-md-4" title="Heading widget">
             {widget.type.charAt(0) + widget.type.slice(1).toLowerCase()} widget</h4>
@@ -15,7 +15,7 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
                 </button>
             }
             {
-                !isBottomWidget &&
+                !isBottomWidget && hasWidgetAfter &&
                 <button className="btn btn-warning" title="Move down" type="button"
                 onClick={() => moveDown(widget)}>
                     <i className="fas fa-arrow-down fa-sm"></i>

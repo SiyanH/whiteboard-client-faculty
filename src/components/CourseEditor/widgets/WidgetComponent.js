@@ -13,6 +13,7 @@ class WidgetComponent extends React.Component {
                         isPreview={this.props.isPreview}
                         isTopWidget={this.props.isTopWidget}
                         isBottomWidget={this.props.isBottomWidget}
+                        hasWidgetAfter={this.props.hasWidgetAfter}
                         deleteWidget={this.props.deleteWidget}
                         updateWidgets={this.props.updateWidgets}
                         moveUp={this.props.moveUp}
@@ -25,6 +26,7 @@ class WidgetComponent extends React.Component {
                         isPreview={this.props.isPreview}
                         isTopWidget={this.props.isTopWidget}
                         isBottomWidget={this.props.isBottomWidget}
+                        hasWidgetAfter={this.props.hasWidgetAfter}
                         deleteWidget={this.props.deleteWidget}
                         updateWidgets={this.props.updateWidgets}
                         moveUp={this.props.moveUp}

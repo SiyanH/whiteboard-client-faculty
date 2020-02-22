@@ -29,6 +29,7 @@ export default class ParagraphWidgetComponent extends React.Component {
                                                         updateWidgets={this.props.updateWidgets}
                                                         isTopWidget={this.props.isTopWidget}
                                                         isBottomWidget={this.props.isBottomWidget}
+                                                        hasWidgetAfter={this.props.hasWidgetAfter}
                                                         moveUp={this.props.moveUp}
                                                         moveDown={this.props.moveDown}/>
                             <form name="paragraphWidget">

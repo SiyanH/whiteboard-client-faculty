@@ -122,6 +122,7 @@ class WidgetListContainer extends React.Component {
                                 isPreview={this.state.isPreview}
                                 isTopWidget={index === 0}
                                 isBottomWidget={index > 0 && index === widgets.length - 1}
+                                hasWidgetAfter={this.state.widgets.length > 1}
                                 deleteWidget={this.deleteWidget}
                                 updateWidgets={this.updateWidgets}
                                 moveUp={this.moveUp}
