@@ -14,15 +14,23 @@ import WidgetComponent from "../components/CourseEditor/widgets/WidgetComponent"
 class WidgetListContainer extends React.Component {
     state = {
         widgets: this.props.widgets,
-        isPreview: false
+        isPreview: this.props.preview === 'true'
     };
+
+    componentDidMount() {
+        this.props.findWidgetsForTopic(this.props.topicId)
+            .then(() => this.setState({
+                                          widgets: this.props.widgets,
+                                          isPreview: this.props.preview === 'true'
+                                      }))
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topicId !== this.props.topicId) {
             this.props.findWidgetsForTopic(this.props.topicId)
                 .then(() => this.setState({
                                               widgets: this.props.widgets,
-                                              isPreview: false
+                                              isPreview: this.props.preview === 'true'
                                           }))
         }
     }
@@ -34,7 +42,8 @@ class WidgetListContainer extends React.Component {
     toggleReview = () => {
         this.setState({
                           isPreview: !this.state.isPreview
-                      })
+                      });
+        this.props.history.replace(`${this.props.history.location.pathname}?preview=${!this.state.isPreview}`);
     };
 
     updateWidgets = () => {
@@ -133,7 +142,7 @@ class WidgetListContainer extends React.Component {
                                 moveDown={this.moveDown}/>)
                 }
                 {
-                    this.props.topicId !== -1 &&
+                    this.props.topicId !== undefined &&
                     <button className="btn btn-danger float-right wbdv-widget-add-btn"
                             title="Add new widget" type="button"
                             onClick={() => this.createWidget(this.props.topicId, {})}>
@@ -170,7 +179,6 @@ const dispatchToPropertyMapper = (dispatch) => {
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgets.widgets,
-    topicId: state.topics.currentTopicId
 });
 
 export default connect(

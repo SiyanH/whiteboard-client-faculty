@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class TopicPillItemComponent extends React.Component {
     state = {
@@ -21,12 +22,8 @@ class TopicPillItemComponent extends React.Component {
     render() {
         return (
             <li className="nav-item wbdv-topic-pill-item">
-                <div className={`wbdv-topic-pill btn btn-secondary d-flex 
-                     ${this.props.isCurrentTopic && "active"}`}
-                     onClick={() => {
-                         this.props.setCurrentTopicId(this.props.topic._id);
-                         this.props.findWidgetsForTopic(this.props.topic._id);
-                     }}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic._id}`}
+                      className={`wbdv-topic-pill btn btn-secondary d-flex ${this.props.isCurrentTopic && "active"}`}>
                     <div className="wbdv-topic-title">
                         {
                             !this.state.editing &&
@@ -61,7 +58,7 @@ class TopicPillItemComponent extends React.Component {
                                role="button" title="Update" onClick={this.updateTopic}></i>
                         }
                     </div>
-                </div>
+                </Link>
             </li>
         )
     }

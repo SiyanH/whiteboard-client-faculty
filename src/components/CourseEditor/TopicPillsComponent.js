@@ -5,47 +5,56 @@ import topicService from "../../services/TopicService";
 import TopicPillItemComponent from "./TopicPillItemComponent";
 import {
     createTopic, deleteTopic,
-    findTopics,
-    findTopicsForLesson, setCurrentTopicId,
+    findTopicsForLesson,
     updateTopic
 } from "../../actions/topicActions";
 import widgetService from "../../services/WidgetService";
 import {findWidgetsForTopic} from "../../actions/widgetActions";
 
 class TopicPillsComponent extends React.Component {
+    componentDidMount() {
+        this.props.findTopicsForLesson(this.props.lessonId)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.lessonId !== this.props.lessonId) {
+            this.props.findTopicsForLesson(this.props.lessonId)
+        }
+    }
+
     render() {
         return (
             <div>
                 {
-                    this.props.currentLessonId !== -1 && this.props.topics.length > 0 &&
+                    this.props.topics.length > 0 &&
                     <ul className="nav nav-pills">
                         {
                             this.props.topics.map(
                                 topic =>
                                     <TopicPillItemComponent key={topic._id}
                                                             topic={topic}
-                                                            lessonId={this.props.currentLessonId}
+                                                            lessonId={this.props.lessonId}
+                                                            moduleId={this.props.moduleId}
+                                                            courseId={this.props.courseId}
                                                             updateTopic={this.props.updateTopic}
                                                             deleteTopic={this.props.deleteTopic}
                                                             findTopicsForLesson={this.props.findTopicsForLesson}
-                                                            findWidgetsForTopic={this.props.findWidgetsForTopic}
-                                                            setCurrentTopicId={this.props.setCurrentTopicId}
-                                                            isCurrentTopic={this.props.currentTopicId
+                                                            isCurrentTopic={this.props.topicId
                                                                             === topic._id}/>)
                         }
                         <li className="nav-item wbdv-topic-pill-item wbdv-topic-add-btn btn btn-secondary"
                             title="Add new topic" role="button"
-                            onClick={() => this.props.createTopic(this.props.currentLessonId,
+                            onClick={() => this.props.createTopic(this.props.lessonId,
                                                                   new Topic("New Topic"))}>
                             <i className="fas fa-plus fa"></i>
                         </li>
                     </ul>
                 }
                 {
-                    (this.props.currentLessonId !== -1 && this.props.topics.length === 0) &&
+                    this.props.topics.length === 0 && this.props.lessonId !== undefined &&
                     <button className="wbdv-topic-add-btn btn btn-secondary"
                             title="Add new topic" type="button"
-                            onClick={() => this.props.createTopic(this.props.currentLessonId,
+                            onClick={() => this.props.createTopic(this.props.lessonId,
                                                                   new Topic("New Topic"))}>
                         Add new topic</button>
                 }
@@ -58,9 +67,7 @@ class TopicPillsComponent extends React.Component {
 const stateToPropertyMapper = (state) => {
     return {
         topics: state.topics.topics,
-        lessons: state.lessons.lessons,
-        currentTopicId: state.topics.currentTopicId,
-        currentLessonId: state.lessons.currentLessonId,
+        lessons: state.lessons.lessons
     }
 };
 
@@ -75,17 +82,12 @@ const dispatchToPropertyMapper = (dispatch) => {
         findWidgetsForTopic: (topicId) =>
             widgetService.findWidgetsForTopic(topicId)
                 .then(actualWidgets => dispatch(findWidgetsForTopic(actualWidgets))),
-        findTopics: (topicId) =>
-            topicService.findTopic(topicId)
-                .then(actualTopics => dispatch(findTopics(actualTopics))),
         updateTopic: (topicId, topic) =>
             topicService.updateTopic(topicId, topic)
                 .then(status => dispatch(updateTopic(topicId, topic))),
         deleteTopic: (topicId) =>
             topicService.deleteTopic(topicId)
-                .then(status => dispatch(deleteTopic(topicId))),
-        setCurrentTopicId: (topicId) =>
-            dispatch(setCurrentTopicId(topicId))
+                .then(status => dispatch(deleteTopic(topicId)))
     }
 };
 

@@ -5,15 +5,12 @@ import moduleService from "../../services/ModuleService";
 import {
     createModule,
     findModulesForCourse,
-    findModules,
     updateModule,
-    deleteModule,
-    setCurrentModuleId
+    deleteModule
 } from "../../actions/moduleActions";
 import ModuleListItemComponent from "./ModuleListItemComponent";
 import lessonService from "../../services/LessonService";
-import {findLessonsForModule, setCurrentLessonId} from "../../actions/lessonActions";
-import {setCurrentTopicId} from "../../actions/topicActions";
+import {findLessonsForModule} from "../../actions/lessonActions";
 
 class ModuleListComponent extends React.Component {
     state = {
@@ -35,11 +32,7 @@ class ModuleListComponent extends React.Component {
                                                          module={module}
                                                          updateModule={this.props.updateModule}
                                                          deleteModule={this.props.deleteModule}
-                                                         findLessonsForModule={this.props.findLessonsForModule}
-                                                         setCurrentModuleId={this.props.setCurrentModuleId}
-                                                         setCurrentLessonId={this.props.setCurrentLessonId}
-                                                         setCurrentTopicId={this.props.setCurrentTopicId}
-                                                         isCurrentModule={this.props.currentModuleId
+                                                         isCurrentModule={this.props.moduleId
                                                                           === module._id}/>)
                     }
                 </div>
@@ -70,8 +63,7 @@ class ModuleListComponent extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        modules: state.modules.modules,
-        currentModuleId: state.modules.currentModuleId
+        modules: state.modules.modules
     }
 };
 
@@ -83,21 +75,12 @@ const dispatchToPropertyMapper = (dispatch) => {
         findModulesForCourse: (courseId) =>
             moduleService.findModulesForCourse(courseId)
                 .then(actualModules => dispatch(findModulesForCourse(actualModules))),
-        findModules: (moduleId) =>
-            moduleService.findModule(moduleId)
-                .then(actualModules => dispatch(findModules(actualModules))),
         updateModule: (moduleId, module) =>
             moduleService.updateModule(moduleId, module)
                 .then(status => dispatch(updateModule(moduleId, module))),
         deleteModule: (moduleId) =>
             moduleService.deleteModule(moduleId)
                 .then(status => dispatch(deleteModule(moduleId))),
-        setCurrentModuleId: (moduleId) =>
-            dispatch(setCurrentModuleId(moduleId)),
-        setCurrentLessonId: (lessonId) =>
-            dispatch(setCurrentLessonId(lessonId)),
-        setCurrentTopicId: (topicId) =>
-            dispatch(setCurrentTopicId(topicId)),
         findLessonsForModule: (moduleId) =>
             lessonService.findLessonsForModule(moduleId)
                 .then(actualLessons => dispatch(findLessonsForModule(actualLessons)))

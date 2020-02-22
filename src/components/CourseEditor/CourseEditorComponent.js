@@ -4,7 +4,7 @@ import CourseEditorHeaderComponent from "./CourseEditorHeaderComponent";
 import ModuleListComponent from "./ModuleListComponent";
 import LessonTabsComponent from "./LessonTabsComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
-import WidgetListComponent from "../../containers/WidgetListContainer";
+import WidgetListContainer from "../../containers/WidgetListContainer";
 import {findCourseById} from "../../services/CourseService";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
@@ -43,12 +43,23 @@ class CourseEditorComponent extends React.Component {
                     <div className="container-fluid vh-100">
                         <div className="row vh-100 wbdv-course-editor-content">
                             <div className="wbdv-course-editor-left col-lg-4 col-xl-3">
-                                <ModuleListComponent courseId={this.props.courseId}/>
+                                <ModuleListComponent courseId={this.props.courseId}
+                                                     moduleId={this.props.moduleId}/>
                             </div>
                             <div className="wbdv-course-editor-right col-lg-8 col-xl-9">
-                                <LessonTabsComponent/>
-                                <TopicPillsComponent/>
-                                <WidgetListComponent/>
+                                <LessonTabsComponent courseId={this.props.courseId}
+                                                     moduleId={this.props.moduleId}
+                                                     lessonId={this.props.lessonId}/>
+                                <TopicPillsComponent courseId={this.props.courseId}
+                                                     moduleId={this.props.moduleId}
+                                                     lessonId={this.props.lessonId}
+                                                     topicId={this.props.topicId}/>
+                                <WidgetListContainer courseId={this.props.courseId}
+                                                     moduleId={this.props.moduleId}
+                                                     lessonId={this.props.lessonId}
+                                                     topicId={this.props.topicId}
+                                                     preview={this.props.preview}
+                                                     history={this.props.history}/>
                             </div>
                         </div>
                     </div>

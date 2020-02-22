@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class LessonTabItemsComponent extends React.Component {
     state = {
@@ -21,13 +22,8 @@ class LessonTabItemsComponent extends React.Component {
     render() {
         return (
             <li className="nav-item wbdv-lesson-tab-item">
-                <div className={`nav-link text-white d-flex
-                     ${this.props.isCurrentLesson ? "bg-dark" : "bg-secondary"}`}
-                     onClick={() => {
-                         this.props.setCurrentTopicId(-1);
-                         this.props.setCurrentLessonId(this.props.lesson._id);
-                         this.props.findTopicsForLesson(this.props.lesson._id);
-                     }}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson._id}`}
+                      className={`nav-link text-white d-flex ${this.props.isCurrentLesson ? "bg-dark" : "bg-secondary"}`}>
                     <div className="wbdv-lesson-title">
                         {
                             !this.state.editing &&
@@ -52,10 +48,7 @@ class LessonTabItemsComponent extends React.Component {
                                role="button" title="Delete"
                                onClick={() => {
                                    this.props.deleteLesson(this.props.lesson._id)
-                                       .then(r => {
-                                           this.props.findLessonsForModule(this.props.moduleId);
-                                           this.props.setCurrentLessonId(-1);
-                                       });
+                                       .then(() => this.props.findLessonsForModule(this.props.moduleId));
                                }}></i>
                         }
                         {
@@ -64,7 +57,7 @@ class LessonTabItemsComponent extends React.Component {
                                role="button" title="Update" onClick={this.updateLesson}></i>
                         }
                     </div>
-                </div>
+                </Link>
             </li>
         )
     }

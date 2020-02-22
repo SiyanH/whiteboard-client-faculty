@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class ModuleListItemComponent extends React.Component {
     state = {
@@ -20,15 +21,10 @@ class ModuleListItemComponent extends React.Component {
 
     render() {
         return (
-            <div className={`d-flex align-items-center justify-content-between list-group-item 
+            <Link to={`/course/${this.props.module.courseId}/module/${this.props.module._id}`}
+                  className={`d-flex align-items-center justify-content-between list-group-item 
                             list-group-item-action wbdv-module-item 
-                            ${this.props.isCurrentModule && "active"}`}
-                 onClick={() => {
-                     this.props.findLessonsForModule(this.props.module._id);
-                     this.props.setCurrentModuleId(this.props.module._id);
-                     this.props.setCurrentLessonId(-1);
-                     this.props.setCurrentTopicId(-1);
-                 }}>
+                            ${this.props.isCurrentModule && "active"}`}>
                 {
                     !this.state.editing &&
                     <div title={this.props.module.title}
@@ -51,9 +47,7 @@ class ModuleListItemComponent extends React.Component {
                         this.props.isCurrentModule && this.state.editing &&
                         <i className="fas fa-times text-white wbdv-button wbdv-delete"
                            role="button" title="Delete"
-                           onClick={() => this.props.deleteModule(this.props.module._id)
-                               .then(r => this.props.setCurrentModuleId(-1))
-                           }></i>
+                           onClick={() => this.props.deleteModule(this.props.module._id)}></i>
                     }
                     {
                         this.props.isCurrentModule && this.state.editing &&
@@ -61,7 +55,7 @@ class ModuleListItemComponent extends React.Component {
                            role="button" title="Update" onClick={this.updateModule}></i>
                     }
                 </div>
-            </div>
+            </Link>
         )
     }
 }

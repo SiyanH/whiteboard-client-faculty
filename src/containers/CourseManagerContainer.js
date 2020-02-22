@@ -10,6 +10,7 @@ import {
     findAllCourses
 } from "../services/CourseService";
 import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
+import queryString from 'query-string';
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -51,6 +52,34 @@ class CourseManagerContainer extends React.Component {
                             render={(props) =>
                                 <CourseEditorComponent history={props.history}
                                                        courseId={props.match.params.courseId}/>
+                            }/>
+                        <Route
+                            path="/course/:courseId/module/:moduleId"
+                            exact={true}
+                            render={(props) =>
+                                <CourseEditorComponent history={props.history}
+                                                       courseId={props.match.params.courseId}
+                                                       moduleId={props.match.params.moduleId}/>
+                            }/>
+                        <Route
+                            path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                            exact={true}
+                            render={(props) =>
+                                <CourseEditorComponent history={props.history}
+                                                       courseId={props.match.params.courseId}
+                                                       moduleId={props.match.params.moduleId}
+                                                       lessonId={props.match.params.lessonId}/>
+                            }/>
+                        <Route
+                            path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                            exact={true}
+                            render={(props) =>
+                                <CourseEditorComponent history={props.history}
+                                                       courseId={props.match.params.courseId}
+                                                       moduleId={props.match.params.moduleId}
+                                                       lessonId={props.match.params.lessonId}
+                                                       topicId={props.match.params.topicId}
+                                                       preview={queryString.parse(props.location.search).preview}/>
                             }/>
                         <Route
                             path="/(table|grid)"
