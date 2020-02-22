@@ -20,13 +20,15 @@ class WidgetListContainer extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topicId !== this.props.topicId) {
             this.props.findWidgetsForTopic(this.props.topicId)
-                .then(() => this.setState({widgets: this.props.widgets}))
+                .then(() => this.setState({
+                                              widgets: this.props.widgets,
+                                              isPreview: false
+                                          }))
         }
-        console.log(this.props.widgets)
     }
 
     save = () => {
-        this.props.saveAllWidgets(this.state.widgets).then();
+        this.state.widgets.forEach(w => this.props.updateWidget(w.id, w))
     };
 
     toggleReview = () => {

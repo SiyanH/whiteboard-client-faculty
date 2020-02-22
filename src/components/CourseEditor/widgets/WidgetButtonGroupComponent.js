@@ -30,10 +30,10 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
                     }}>
                 <option value="HEADING">Heading</option>
                 <option value="PARAGRAPH">Paragraph</option>
-                <option value="LIST">List</option>
-                <option value="IMAGE">Image</option>
-                <option value="HYPERLINK">Hyperlink</option>
-                <option value="VIDEO">Video</option>
+                <option value="LIST" disabled>List</option>
+                <option value="IMAGE" disabled>Image</option>
+                <option value="HYPERLINK" disabled>Hyperlink</option>
+                <option value="VIDEO" disabled>Video</option>
             </select>
             <button className="btn btn-danger" title="Delete widget" type="button"
                     onClick={() => deleteWidget(widget)}>
