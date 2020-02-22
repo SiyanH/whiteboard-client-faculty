@@ -66,23 +66,27 @@ class WidgetListContainer extends React.Component {
     };
 
     moveUp = (widget) => {
-        let widgetBefore = this.state.widgets[widget.order - 1];
+        if (widget.order - 1 >= 0) {
+            let widgetBefore = this.state.widgets[widget.order - 1];
 
-        widgetBefore.order++;
-        widget.order--;
-        this.state.widgets.splice(widget.order, 2, widget, widgetBefore);
+            widgetBefore.order++;
+            widget.order--;
+            this.state.widgets.splice(widget.order, 2, widget, widgetBefore);
 
-        this.updateWidgets();
+            this.updateWidgets();
+        }
     };
 
     moveDown = (widget) => {
-        let widgetAfter = this.state.widgets[widget.order + 1];
+        if (widget.order + 1 < this.state.widgets.length) {
+            let widgetAfter = this.state.widgets[widget.order + 1];
 
-        widgetAfter.order--;
-        widget.order++;
-        this.state.widgets.splice(widgetAfter.order, 2, widgetAfter, widget);
+            widgetAfter.order--;
+            widget.order++;
+            this.state.widgets.splice(widgetAfter.order, 2, widgetAfter, widget);
 
-        this.updateWidgets();
+            this.updateWidgets();
+        }
     };
 
     render() {
