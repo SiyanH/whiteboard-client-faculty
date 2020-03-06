@@ -1,10 +1,17 @@
-function Topic(title, lessonId, _id) {
+function Topic(title, description, widgets, lessonId, id) {
     this.title = title;
+    this.description = description;
+    this.widgets = widgets;
     this.lessonId = lessonId;
-    this._id = _id;
+    this.id = id;
 
     this.setTitle = setTitle;
     this.getTitle = getTitle;
+    this.setDescription = setDescription;
+    this.getDescription = getDescription;
+    this.setWidgets = setWidgets;
+    this.getWidgets = getWidgets;
+
     this.setLessonId = setLessonId;
     this.getLessonId = getLessonId;
     this.setId = setId;
@@ -17,6 +24,22 @@ function Topic(title, lessonId, _id) {
     function getTitle() {
         return this.title;
     }
+
+    function setDescription(description) {
+        this.description = description;
+    }
+
+    function getDescription() {
+        return this.description;
+    }
+
+    function setWidgets(widgets) {
+        this.widgets = widgets;
+    }
+
+    function getWidgets() {
+        return this.widgets;
+    }
    
     function setLessonId(lessonId) {
         this.lessonId = lessonId;
@@ -27,11 +50,11 @@ function Topic(title, lessonId, _id) {
     }
 
     function setId() {
-        this._id = _id;
+        this.id = id;
     }
 
     function getId() {
-        return this._id;
+        return this.id;
     }
 }
 
