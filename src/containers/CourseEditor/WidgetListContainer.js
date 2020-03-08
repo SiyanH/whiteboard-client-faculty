@@ -113,6 +113,18 @@ class WidgetListContainer extends React.Component {
         }));
     };
 
+    changeImageUrl = (widgetId, url) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.url = url;
+                    }
+                    return w;
+                })
+        }));
+    };
+
     createWidget = () => {
         this.props.createWidget(this.props.topicId, {})
             .then(res => {
@@ -210,6 +222,7 @@ class WidgetListContainer extends React.Component {
                                 changeWidgetName={this.changeWidgetName}
                                 changeWidgetSize={this.changeWidgetSize}
                                 changeListType={this.changeListType}
+                                changeImageUrl={this.changeImageUrl}
                                 moveUp={this.moveUp}
                                 moveDown={this.moveDown}/>)
                 }
