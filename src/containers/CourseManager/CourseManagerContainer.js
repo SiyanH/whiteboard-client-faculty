@@ -1,14 +1,14 @@
 import React from "react";
 import "./CourseManagerContainer.css"
-import CourseEditorContainer from "./CourseEditor/CourseEditorContainer";
-import CourseListComponent from "../components/CourseManager/CourseListComponent";
-import ErrorPage from "../components/ErrorPage"
+import CourseEditorContainer from "../CourseEditor/CourseEditorContainer";
+import CourseListComponent from "../../components/CourseManager/CourseListComponent";
+import ErrorPage from "../../components/ErrorPage"
 import {
     createCourse,
     deleteCourse,
     updateCourse,
     findAllCourses
-} from "../services/CourseService";
+} from "../../services/CourseService";
 import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import queryString from 'query-string';
 

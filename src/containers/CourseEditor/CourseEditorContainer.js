@@ -1,9 +1,6 @@
 import React from "react";
 import "./CourseEditorContainer.css"
-import CourseEditorHeaderComponent from "./CourseEditorHeaderComponent";
-import ModuleListComponent from "./ModuleListComponent";
-import LessonTabsComponent from "./LessonTabsComponent";
-import TopicPillsComponent from "./TopicPillsComponent";
+import CourseEditorHeaderComponent from "../../components/CourseEditor/CourseEditorHeaderComponent";
 import WidgetListContainer from "./WidgetListContainer";
 import {findCourseById} from "../../services/CourseService";
 import {combineReducers, createStore} from "redux";
@@ -12,6 +9,9 @@ import moduleReducer from "../../reducers/moduleReducer";
 import lessonReducer from "../../reducers/lessonReducer";
 import topicReducer from "../../reducers/topicReducer";
 import widgetReducer from "../../reducers/widgetReducer";
+import ModuleListContainer from "./ModuleListContainer";
+import LessonTabsContainer from "./LessonTabsContainer";
+import TopicPillsContainer from "./TopicPillsContainer";
 
 const rootReducer = combineReducers({
                                         modules: moduleReducer,
@@ -43,14 +43,14 @@ class CourseEditorContainer extends React.Component {
                     <div className="container-fluid vh-100">
                         <div className="row vh-100 wbdv-course-editor-content">
                             <div className="wbdv-course-editor-left col-lg-4 col-xl-3">
-                                <ModuleListComponent courseId={this.props.courseId}
+                                <ModuleListContainer courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}/>
                             </div>
                             <div className="wbdv-course-editor-right col-lg-8 col-xl-9">
-                                <LessonTabsComponent courseId={this.props.courseId}
+                                <LessonTabsContainer courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}
                                                      lessonId={this.props.lessonId}/>
-                                <TopicPillsComponent courseId={this.props.courseId}
+                                <TopicPillsContainer courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}
                                                      lessonId={this.props.lessonId}
                                                      topicId={this.props.topicId}/>
