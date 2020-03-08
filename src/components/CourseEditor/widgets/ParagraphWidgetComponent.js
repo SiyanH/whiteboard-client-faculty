@@ -9,12 +9,12 @@ export default class ParagraphWidgetComponent extends React.Component {
 
     changeText = (text) => {
         this.setState({text: text});
-        this.props.widget.text = text;
+        this.props.changeWidgetText(this.props.widget.id, text);
     };
 
     changeName = (name) => {
         this.setState({name: name});
-        this.props.widget.name = name;
+        this.props.changeWidgetName(this.props.widget.id, name);
     };
 
     render() {
@@ -26,7 +26,7 @@ export default class ParagraphWidgetComponent extends React.Component {
                         <div>
                             <WidgetButtonGroupComponent widget={this.props.widget}
                                                         deleteWidget={this.props.deleteWidget}
-                                                        updateWidgets={this.props.updateWidgets}
+                                                        changeWidgetType={this.props.changeWidgetType}
                                                         isTopWidget={this.props.isTopWidget}
                                                         isBottomWidget={this.props.isBottomWidget}
                                                         hasWidgetAfter={this.props.hasWidgetAfter}

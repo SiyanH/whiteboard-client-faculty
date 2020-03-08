@@ -8,11 +8,11 @@ import {
     updateModule,
     deleteModule
 } from "../../actions/moduleActions";
-import ModuleListItemComponent from "./ModuleListItemComponent";
+import ModuleListItemComponent from "../../components/CourseEditor/ModuleListItemComponent";
 import lessonService from "../../services/LessonService";
 import {findLessonsForModule} from "../../actions/lessonActions";
 
-class ModuleListComponent extends React.Component {
+class ModuleListContainer extends React.Component {
     state = {
         newModuleTitle: "New Module"
     };
@@ -90,4 +90,4 @@ const dispatchToPropertyMapper = (dispatch) => {
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper)
-(ModuleListComponent);
+(ModuleListContainer);

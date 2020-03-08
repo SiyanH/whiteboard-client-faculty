@@ -10,17 +10,17 @@ export default class HeadingWidgetComponent extends React.Component {
 
     changeText = (text) => {
         this.setState({text: text});
-        this.props.widget.text = text;
+        this.props.changeWidgetText(this.props.widget.id, text);
     };
 
     changeName = (name) => {
         this.setState({name: name});
-        this.props.widget.name = name;
+        this.props.changeWidgetName(this.props.widget.id, name);
     };
 
     changeSize = (size) => {
         this.setState({size: size});
-        this.props.widget.size = size;
+        this.props.changeWidgetSize(this.props.widget.id, size);
     };
 
     render() {
@@ -35,7 +35,7 @@ export default class HeadingWidgetComponent extends React.Component {
                                                         isBottomWidget={this.props.isBottomWidget}
                                                         hasWidgetAfter={this.props.hasWidgetAfter}
                                                         deleteWidget={this.props.deleteWidget}
-                                                        updateWidgets={this.props.updateWidgets}
+                                                        changeWidgetType={this.props.changeWidgetType}
                                                         moveUp={this.props.moveUp}
                                                         moveDown={this.props.moveDown}/>
                             <form name="headingWidget">

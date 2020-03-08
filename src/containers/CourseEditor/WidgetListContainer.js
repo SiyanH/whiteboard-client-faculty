@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import widgetService from "../services/WidgetService";
+import widgetService from "../../services/WidgetService";
 import {
     createWidget,
     deleteWidget,
@@ -8,8 +8,8 @@ import {
     findWidgetsForTopic,
     updateWidget,
     saveAllWidgets
-} from "../actions/widgetActions";
-import WidgetComponent from "../components/CourseEditor/widgets/WidgetComponent";
+} from "../../actions/widgetActions";
+import WidgetComponent from "../../components/CourseEditor/widgets/WidgetComponent";
 
 class WidgetListContainer extends React.Component {
     state = {
@@ -18,20 +18,26 @@ class WidgetListContainer extends React.Component {
     };
 
     componentDidMount() {
-        this.props.findWidgetsForTopic(this.props.topicId)
-            .then(() => this.setState({
-                                          widgets: this.props.widgets,
-                                          isPreview: this.props.preview === 'true'
-                                      }))
+        if (this.props.topicId !== undefined) {
+            this.props.findWidgetsForTopic(this.props.topicId)
+                .then(() => this.setState((state, props) => ({
+                    widgets: props.widgets,
+                    isPreview: props.preview === 'true'
+                })))
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topicId !== this.props.topicId) {
-            this.props.findWidgetsForTopic(this.props.topicId)
-                .then(() => this.setState({
-                                              widgets: this.props.widgets,
-                                              isPreview: this.props.preview === 'true'
-                                          }))
+            if (this.props.topicId !== undefined) {
+                this.props.findWidgetsForTopic(this.props.topicId)
+                    .then(() => this.setState((state, props) => ({
+                        widgets: props.widgets,
+                        isPreview: props.preview === 'true'
+                    })))
+            } else {
+                this.setState({widgets: []})
+            }
         }
     }
 
@@ -40,61 +46,123 @@ class WidgetListContainer extends React.Component {
     };
 
     toggleReview = () => {
-        this.setState({
-                          isPreview: !this.state.isPreview
-                      });
-        this.props.history.replace(`${this.props.history.location.pathname}?preview=${!this.state.isPreview}`);
+        this.setState(state => ({
+            isPreview: !state.isPreview
+        }));
+        this.props.history.replace(
+            `${this.props.history.location.pathname}?preview=${!this.state.isPreview}`);
     };
 
-    updateWidgets = () => {
-        this.setState({
-                          widgets: this.state.widgets
-                      })
+    changeWidgetType = (widgetId, type) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.type = type;
+                    }
+                    return w;
+                })
+        }))
+    };
+
+    changeWidgetText = (widgetId, text) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.text = text;
+                    }
+                    return w;
+                })
+        }));
+    };
+
+    changeWidgetName = (widgetId, name) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.name = name;
+                    }
+                    return w;
+                })
+        }));
+    };
+
+    changeWidgetSize = (widgetId, size) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.size = size;
+                    }
+                    return w;
+                })
+        }));
+    };
+
+    changeListType = (widgetId, type) => {
+        this.setState(state => ({
+            widgets: state.widgets.map(
+                w => {
+                    if (w.id === widgetId) {
+                        w.ordered = type === 'ORDERED';
+                    }
+                    return w;
+                })
+        }));
     };
 
     createWidget = () => {
         this.props.createWidget(this.props.topicId, {})
             .then(res => {
-                this.state.widgets.push(res.newWidget);
-                this.updateWidgets();
-            });
+                this.setState(state => ({
+                    widgets: [...state.widgets, res.newWidget]
+                }))
+            })
     };
 
     deleteWidget = (widget) => {
         this.props.deleteWidget(widget.id)
-            .then(() => this.setState({
-                                          widgets:  this.state.widgets
-                                              .filter(w => w.id !== widget.id)
-                                              .map(w => {
-                                                  if (w.order > widget.order) {
-                                                      w.order--;
-                                                  }
-                                                  return w;
-                                              })
-                                      }))
+            .then(() => this.setState(state => ({
+                widgets: state.widgets
+                    .filter(w => w.id !== widget.id)
+                    .map(w => {
+                        if (w.order > widget.order) {
+                            w.order--;
+                        }
+                        return w;
+                    })
+            })))
     };
 
     moveUp = (widget) => {
         if (widget.order - 1 >= 0) {
-            let widgetBefore = this.state.widgets[widget.order - 1];
+            this.setState(state => {
+                let newWidgets = state.widgets.slice();
+                let widgetBefore = newWidgets[widget.order - 1];
 
-            widgetBefore.order++;
-            widget.order--;
-            this.state.widgets.splice(widget.order, 2, widget, widgetBefore);
+                widgetBefore.order++;
+                widget.order--;
+                newWidgets.splice(widget.order, 2, widget, widgetBefore);
 
-            this.updateWidgets();
+                return {widgets: newWidgets};
+            });
         }
     };
 
     moveDown = (widget) => {
         if (widget.order + 1 < this.state.widgets.length) {
-            let widgetAfter = this.state.widgets[widget.order + 1];
+            this.setState(state => {
+                let newWidgets = state.widgets.slice();
+                let widgetAfter = newWidgets[widget.order + 1];
 
-            widgetAfter.order--;
-            widget.order++;
-            this.state.widgets.splice(widgetAfter.order, 2, widgetAfter, widget);
+                widgetAfter.order--;
+                widget.order++;
+                newWidgets.splice(widgetAfter.order, 2, widgetAfter, widget);
 
-            this.updateWidgets();
+                return {widgets: newWidgets};
+            });
         }
     };
 
@@ -137,7 +205,11 @@ class WidgetListContainer extends React.Component {
                                 isBottomWidget={index > 0 && index === widgets.length - 1}
                                 hasWidgetAfter={this.state.widgets.length > 1}
                                 deleteWidget={this.deleteWidget}
-                                updateWidgets={this.updateWidgets}
+                                changeWidgetType={this.changeWidgetType}
+                                changeWidgetText={this.changeWidgetText}
+                                changeWidgetName={this.changeWidgetName}
+                                changeWidgetSize={this.changeWidgetSize}
+                                changeListType={this.changeListType}
                                 moveUp={this.moveUp}
                                 moveDown={this.moveDown}/>)
                 }

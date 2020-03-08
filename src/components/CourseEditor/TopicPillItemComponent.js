@@ -1,39 +1,42 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {findTopic} from "../../services/TopicService";
 
 class TopicPillItemComponent extends React.Component {
     state = {
         editing: false,
-        topic: this.props.topic
+        title: this.props.topicTitle
     };
 
     setEditing = () => this.setState({editing: true});
-    setTopic = (e) => this.setState({
-                                        topic: {
-                                            ...this.state.topic,
-                                            title: e.target.value
-                                        }
-                                    });
+    setTitle = (title) => this.setState({title: title});
+
     updateTopic = () => {
-        this.props.updateTopic(this.state.topic._id, this.state.topic);
+        findTopic(this.props.topicId)
+            .then(topic => {
+                topic.title = this.state.title;
+                this.props.updateTopic(topic.id, topic);
+            });
         this.setState({editing: false});
     };
 
     render() {
         return (
             <li className="nav-item wbdv-topic-pill-item">
-                <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic._id}`}
-                      className={`wbdv-topic-pill btn btn-secondary d-flex ${this.props.isCurrentTopic && "active"}`}>
+                <Link
+                    to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topicId}`}
+                    className={`wbdv-topic-pill btn btn-secondary d-flex ${this.props.isCurrentTopic
+                                                                           && "active"}`}>
                     <div className="wbdv-topic-title">
                         {
                             !this.state.editing &&
-                            <span title={this.state.topic.title}>{this.state.topic.title}</span>
+                            <span title={this.state.title}>{this.state.title}</span>
                         }
                         {
                             this.state.editing &&
                             <input className="form-control title-edit-field"
-                                   value={this.state.topic.title}
-                                   onChange={(e) => this.setTopic(e)}/>
+                                   value={this.state.title}
+                                   onChange={e => this.setTitle(e.target.value)}/>
                         }
                     </div>
                     <div className="wbdv-topic-button-group">
@@ -47,7 +50,7 @@ class TopicPillItemComponent extends React.Component {
                             <i className="fas fa-times text-white wbdv-button wbdv-delete"
                                role="button" title="Delete"
                                onClick={() => {
-                                   this.props.deleteTopic(this.props.topic._id)
+                                   this.props.deleteTopic(this.props.topicId)
                                        .then(r => this.props.findTopicsForLesson(
                                            this.props.lessonId));
                                }}></i>

@@ -2,23 +2,27 @@ import React from "react";
 import {connect} from "react-redux";
 import Topic from "../../models/TopicModel";
 import topicService from "../../services/TopicService";
-import TopicPillItemComponent from "./TopicPillItemComponent";
+import TopicPillItemComponent from "../../components/CourseEditor/TopicPillItemComponent";
 import {
     createTopic, deleteTopic,
     findTopicsForLesson,
-    updateTopic
+    updateTopic, resetTopics
 } from "../../actions/topicActions";
-import widgetService from "../../services/WidgetService";
-import {findWidgetsForTopic} from "../../actions/widgetActions";
 
-class TopicPillsComponent extends React.Component {
+class TopicPillsContainer extends React.Component {
     componentDidMount() {
-        this.props.findTopicsForLesson(this.props.lessonId)
+        if (this.props.lessonId !== undefined) {
+            this.props.findTopicsForLesson(this.props.lessonId)
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.lessonId !== this.props.lessonId) {
-            this.props.findTopicsForLesson(this.props.lessonId)
+            if (this.props.lessonId !== undefined) {
+                this.props.findTopicsForLesson(this.props.lessonId)
+            } else {
+                this.props.resetTopics();
+            }
         }
     }
 
@@ -31,8 +35,9 @@ class TopicPillsComponent extends React.Component {
                         {
                             this.props.topics.map(
                                 topic =>
-                                    <TopicPillItemComponent key={topic._id}
-                                                            topic={topic}
+                                    <TopicPillItemComponent key={topic.id}
+                                                            topicId={topic.id}
+                                                            topicTitle={topic.title}
                                                             lessonId={this.props.lessonId}
                                                             moduleId={this.props.moduleId}
                                                             courseId={this.props.courseId}
@@ -40,7 +45,7 @@ class TopicPillsComponent extends React.Component {
                                                             deleteTopic={this.props.deleteTopic}
                                                             findTopicsForLesson={this.props.findTopicsForLesson}
                                                             isCurrentTopic={this.props.topicId
-                                                                            === topic._id}/>)
+                                                                            === topic.id.toString()}/>)
                         }
                         <li className="nav-item wbdv-topic-pill-item wbdv-topic-add-btn btn btn-secondary"
                             title="Add new topic" role="button"
@@ -59,7 +64,6 @@ class TopicPillsComponent extends React.Component {
                         Add new topic</button>
                 }
             </div>
-
         )
     }
 }
@@ -79,19 +83,17 @@ const dispatchToPropertyMapper = (dispatch) => {
         findTopicsForLesson: (lessonId) =>
             topicService.findTopicsForLesson(lessonId)
                 .then(actualTopics => dispatch(findTopicsForLesson(actualTopics))),
-        findWidgetsForTopic: (topicId) =>
-            widgetService.findWidgetsForTopic(topicId)
-                .then(actualWidgets => dispatch(findWidgetsForTopic(actualWidgets))),
         updateTopic: (topicId, topic) =>
             topicService.updateTopic(topicId, topic)
                 .then(status => dispatch(updateTopic(topicId, topic))),
         deleteTopic: (topicId) =>
             topicService.deleteTopic(topicId)
-                .then(status => dispatch(deleteTopic(topicId)))
+                .then(status => dispatch(deleteTopic(topicId))),
+        resetTopics: () => dispatch(resetTopics())
     }
 };
 
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper)
-(TopicPillsComponent);
+(TopicPillsContainer);

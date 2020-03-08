@@ -1,7 +1,9 @@
 import React from "react";
 
-const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopWidget,
-                                        isBottomWidget, moveUp, moveDown, hasWidgetAfter}) =>
+const WidgetButtonGroupComponent = ({
+                                        widget, deleteWidget, changeWidgetType, isTopWidget,
+                                        isBottomWidget, moveUp, moveDown, hasWidgetAfter
+                                    }) =>
     <div className="row no-gutters">
         <h4 className="col-md-4" title="Heading widget">
             {widget.type.charAt(0) + widget.type.slice(1).toLowerCase()} widget</h4>
@@ -10,14 +12,14 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
             {
                 !isTopWidget &&
                 <button className="btn btn-warning" title="Move up" type="button"
-                onClick={() => moveUp(widget)}>
+                        onClick={() => moveUp(widget)}>
                     <i className="fas fa-arrow-up fa-sm"></i>
                 </button>
             }
             {
                 !isBottomWidget && hasWidgetAfter &&
                 <button className="btn btn-warning" title="Move down" type="button"
-                onClick={() => moveDown(widget)}>
+                        onClick={() => moveDown(widget)}>
                     <i className="fas fa-arrow-down fa-sm"></i>
                 </button>
             }
@@ -25,14 +27,11 @@ const WidgetButtonGroupComponent = ({widget, deleteWidget, updateWidgets, isTopW
             <label className="sr-only" htmlFor={`widgetType_${widget.id}`}>Widget Type</label>
             <select className="form-control" id={`widgetType_${widget.id}`} title="Widget type"
                     defaultValue={widget.type}
-                    onChange={e => {
-                        widget.type = e.target.value;
-                        updateWidgets();
-                    }}>
+                    onChange={e => changeWidgetType(widget.id, e.target.value)}>
                 <option value="HEADING">Heading</option>
                 <option value="PARAGRAPH">Paragraph</option>
-                <option value="LIST" disabled>List</option>
-                <option value="IMAGE" disabled>Image</option>
+                <option value="LIST">List</option>
+                <option value="IMAGE">Image</option>
                 <option value="HYPERLINK" disabled>Hyperlink</option>
                 <option value="VIDEO" disabled>Video</option>
             </select>

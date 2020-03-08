@@ -1,6 +1,6 @@
 import React from "react";
 import "./CourseManagerContainer.css"
-import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
+import CourseEditorContainer from "./CourseEditor/CourseEditorContainer";
 import CourseListComponent from "../components/CourseManager/CourseListComponent";
 import ErrorPage from "../components/ErrorPage"
 import {
@@ -50,14 +50,14 @@ class CourseManagerContainer extends React.Component {
                             path="/course/:courseId"
                             exact={true}
                             render={(props) =>
-                                <CourseEditorComponent history={props.history}
+                                <CourseEditorContainer history={props.history}
                                                        courseId={props.match.params.courseId}/>
                             }/>
                         <Route
                             path="/course/:courseId/module/:moduleId"
                             exact={true}
                             render={(props) =>
-                                <CourseEditorComponent history={props.history}
+                                <CourseEditorContainer history={props.history}
                                                        courseId={props.match.params.courseId}
                                                        moduleId={props.match.params.moduleId}/>
                             }/>
@@ -65,7 +65,7 @@ class CourseManagerContainer extends React.Component {
                             path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                             exact={true}
                             render={(props) =>
-                                <CourseEditorComponent history={props.history}
+                                <CourseEditorContainer history={props.history}
                                                        courseId={props.match.params.courseId}
                                                        moduleId={props.match.params.moduleId}
                                                        lessonId={props.match.params.lessonId}/>
@@ -74,7 +74,7 @@ class CourseManagerContainer extends React.Component {
                             path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
                             exact={true}
                             render={(props) =>
-                                <CourseEditorComponent history={props.history}
+                                <CourseEditorContainer history={props.history}
                                                        courseId={props.match.params.courseId}
                                                        moduleId={props.match.params.moduleId}
                                                        lessonId={props.match.params.lessonId}

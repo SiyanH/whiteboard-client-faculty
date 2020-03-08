@@ -1,10 +1,10 @@
 import React from "react";
-import "./CourseEditorComponent.css"
+import "./CourseEditorContainer.css"
 import CourseEditorHeaderComponent from "./CourseEditorHeaderComponent";
 import ModuleListComponent from "./ModuleListComponent";
 import LessonTabsComponent from "./LessonTabsComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
-import WidgetListContainer from "../../containers/WidgetListContainer";
+import WidgetListContainer from "./WidgetListContainer";
 import {findCourseById} from "../../services/CourseService";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
-class CourseEditorComponent extends React.Component {
+class CourseEditorContainer extends React.Component {
     state = {
         course: {}
     };
@@ -69,4 +69,4 @@ class CourseEditorComponent extends React.Component {
     }
 }
 
-export default CourseEditorComponent;
+export default CourseEditorContainer;

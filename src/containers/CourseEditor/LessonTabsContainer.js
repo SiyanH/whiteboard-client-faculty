@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Lesson from "../../models/LessonModel";
 import topicService from "../../services/TopicService";
 import lessonService from "../../services/LessonService";
-import LessonTabItemsComponent from "./LessonTabItemsComponent";
+import LessonTabItemsComponent from "../../components/CourseEditor/LessonTabItemsComponent";
 import {
     createLesson, deleteLesson,
     updateLesson,
@@ -11,9 +11,11 @@ import {
 } from "../../actions/lessonActions";
 import {findTopicsForLesson} from "../../actions/topicActions";
 
-class LessonTabsComponent extends React.Component {
+class LessonTabsContainer extends React.Component {
     componentDidMount() {
-        this.props.findLessonsForModule(this.props.moduleId);
+        if (this.props.moduleId !== undefined) {
+            this.props.findLessonsForModule(this.props.moduleId);
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -94,4 +96,4 @@ const dispatchToPropertyMapper = (dispatch) => {
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper)
-(LessonTabsComponent);
+(LessonTabsContainer);
