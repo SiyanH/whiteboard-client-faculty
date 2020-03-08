@@ -43,14 +43,17 @@ class CourseEditorContainer extends React.Component {
                     <div className="container-fluid vh-100">
                         <div className="row vh-100 wbdv-course-editor-content">
                             <div className="wbdv-course-editor-left col-lg-4 col-xl-3">
-                                <ModuleListContainer courseId={this.props.courseId}
+                                <ModuleListContainer history={this.props.history}
+                                                     courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}/>
                             </div>
                             <div className="wbdv-course-editor-right col-lg-8 col-xl-9">
-                                <LessonTabsContainer courseId={this.props.courseId}
+                                <LessonTabsContainer history={this.props.history}
+                                                     courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}
                                                      lessonId={this.props.lessonId}/>
-                                <TopicPillsContainer courseId={this.props.courseId}
+                                <TopicPillsContainer history={this.props.history}
+                                                     courseId={this.props.courseId}
                                                      moduleId={this.props.moduleId}
                                                      lessonId={this.props.lessonId}
                                                      topicId={this.props.topicId}/>

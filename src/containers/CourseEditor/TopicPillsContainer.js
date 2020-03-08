@@ -26,6 +26,12 @@ class TopicPillsContainer extends React.Component {
         }
     }
 
+    deleteTopic = (topicId) => {
+        this.props.deleteTopic(topicId)
+            .then(() => this.props.history.replace(
+                `/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`))
+    };
+
     render() {
         return (
             <div>
@@ -42,7 +48,7 @@ class TopicPillsContainer extends React.Component {
                                                             moduleId={this.props.moduleId}
                                                             courseId={this.props.courseId}
                                                             updateTopic={this.props.updateTopic}
-                                                            deleteTopic={this.props.deleteTopic}
+                                                            deleteTopic={this.deleteTopic}
                                                             findTopicsForLesson={this.props.findTopicsForLesson}
                                                             isCurrentTopic={this.props.topicId
                                                                             === topic.id.toString()}/>)

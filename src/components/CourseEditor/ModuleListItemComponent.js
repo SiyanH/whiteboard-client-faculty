@@ -1,41 +1,41 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {findModule} from "../../services/ModuleService";
 
 class ModuleListItemComponent extends React.Component {
     state = {
         editing: false,
-        module: this.props.module
+        title: this.props.moduleTitle
     };
 
     setEditing = () => this.setState({editing: true});
-    setModule = (e) => this.setState({
-                                         module: {
-                                             ...this.state.module,
-                                             title: e.target.value
-                                         }
-                                     });
+    setModule = (title) => this.setState({title: title});
+
     updateModule = () => {
-        this.props.updateModule(this.state.module._id, this.state.module);
+        findModule(this.props.moduleId)
+            .then(module => {
+                module.title = this.state.title;
+                this.props.updateModule(module._id, module);
+            });
         this.setState({editing: false});
     };
 
     render() {
         return (
-            <Link to={`/course/${this.props.module.courseId}/module/${this.props.module._id}`}
+            <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}`}
                   className={`d-flex align-items-center justify-content-between list-group-item 
                             list-group-item-action wbdv-module-item 
                             ${this.props.isCurrentModule && "active"}`}>
                 {
                     !this.state.editing &&
-                    <div title={this.props.module.title}
+                    <div title={this.state.title}
                          className="wbdv-module-item-title text-white d-inline-block">
-                        {this.props.module.title}</div>
+                        {this.state.title}</div>
                 }
                 {
                     this.state.editing &&
                     <input className="form-control title-edit-field"
-                           value={this.state.module.title}
-                           onChange={(e) => this.setModule(e)}/>
+                           value={this.state.title} onChange={e => this.setModule(e.target.value)}/>
                 }
                 <div className="d-flex justify-content-center">
                     {
@@ -47,7 +47,7 @@ class ModuleListItemComponent extends React.Component {
                         this.props.isCurrentModule && this.state.editing &&
                         <i className="fas fa-times text-white wbdv-button wbdv-delete"
                            role="button" title="Delete"
-                           onClick={() => this.props.deleteModule(this.props.module._id)}></i>
+                           onClick={() => this.props.deleteModule(this.props.moduleId)}></i>
                     }
                     {
                         this.props.isCurrentModule && this.state.editing &&

@@ -1,39 +1,42 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {findLesson} from "../../services/LessonService";
 
 class LessonTabItemsComponent extends React.Component {
     state = {
         editing: false,
-        lesson: this.props.lesson
+        title: this.props.lessonTitle
     };
 
     setEditing = () => this.setState({editing: true});
-    setLesson = (e) => this.setState({
-                                         lesson: {
-                                             ...this.state.lesson,
-                                             title: e.target.value
-                                         }
-                                     });
+    setLesson = (title) => this.setState({title: title});
+
     updateLesson = () => {
-        this.props.updateLesson(this.state.lesson._id, this.state.lesson);
+        findLesson(this.props.lessonId)
+            .then(lesson => {
+                lesson.title = this.state.title;
+                this.props.updateLesson(lesson._id, lesson);
+            });
         this.setState({editing: false});
     };
 
     render() {
         return (
             <li className="nav-item wbdv-lesson-tab-item">
-                <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson._id}`}
-                      className={`nav-link text-white d-flex ${this.props.isCurrentLesson ? "bg-dark" : "bg-secondary"}`}>
+                <Link
+                    to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`}
+                    className={`nav-link text-white d-flex ${this.props.isCurrentLesson ? "bg-dark"
+                                                                                        : "bg-secondary"}`}>
                     <div className="wbdv-lesson-title">
                         {
                             !this.state.editing &&
-                            <span title={this.state.lesson.title}>{this.state.lesson.title}</span>
+                            <span title={this.state.title}>{this.state.title}</span>
                         }
                         {
                             this.state.editing &&
                             <input className="form-control title-edit-field"
-                                   value={this.state.lesson.title}
-                                   onChange={(e) => this.setLesson(e)}/>
+                                   value={this.state.title}
+                                   onChange={e => this.setLesson(e.target.value)}/>
                         }
                     </div>
                     <div className="wbdv-lesson-tab-btn">
@@ -46,10 +49,7 @@ class LessonTabItemsComponent extends React.Component {
                             this.props.isCurrentLesson && this.state.editing &&
                             <i className="fas fa-times text-white wbdv-button wbdv-delete"
                                role="button" title="Delete"
-                               onClick={() => {
-                                   this.props.deleteLesson(this.props.lesson._id)
-                                       .then(() => this.props.findLessonsForModule(this.props.moduleId));
-                               }}></i>
+                               onClick={() => this.props.deleteLesson(this.props.lessonId)}></i>
                         }
                         {
                             this.props.isCurrentLesson && this.state.editing &&

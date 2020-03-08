@@ -21,6 +21,11 @@ class ModuleListContainer extends React.Component {
         this.props.findModulesForCourse(this.props.courseId).then();
     }
 
+    deleteModule = (moduleId) => {
+        this.props.deleteModule(moduleId)
+            .then(() => this.props.history.replace(`/course/${this.props.courseId}`))
+    };
+
     render() {
         return (
             <div>
@@ -29,9 +34,12 @@ class ModuleListContainer extends React.Component {
                         this.props.modules && this.props.modules.map(
                             module =>
                                 <ModuleListItemComponent key={module._id}
-                                                         module={module}
+                                                         moduleId={module._id}
+                                                         courseId={module.courseId}
+                                                         moduleTitle={module.title}
                                                          updateModule={this.props.updateModule}
-                                                         deleteModule={this.props.deleteModule}
+                                                         deleteModule={this.deleteModule}
+                                                         history={this.props.history}
                                                          isCurrentModule={this.props.moduleId
                                                                           === module._id}/>)
                     }

@@ -24,6 +24,12 @@ class LessonTabsContainer extends React.Component {
         }
     }
 
+    deleteLesson = (lessonId) => {
+        this.props.deleteLesson(lessonId)
+            .then(() => this.props.history.replace(
+                `/course/${this.props.courseId}/module/${this.props.moduleId}`))
+    };
+
     render() {
         return (
             <div>
@@ -34,11 +40,12 @@ class LessonTabsContainer extends React.Component {
                             this.props.lessons.map(
                                 lesson =>
                                     <LessonTabItemsComponent key={lesson._id}
-                                                             lesson={lesson}
+                                                             lessonId={lesson._id}
+                                                             lessonTitle={lesson.title}
                                                              moduleId={this.props.moduleId}
                                                              courseId={this.props.courseId}
                                                              updateLesson={this.props.updateLesson}
-                                                             deleteLesson={this.props.deleteLesson}
+                                                             deleteLesson={this.deleteLesson}
                                                              findLessonsForModule={this.props.findLessonsForModule}
                                                              isCurrentLesson={this.props.lessonId
                                                                               === lesson._id}/>)

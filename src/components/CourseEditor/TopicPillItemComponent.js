@@ -49,11 +49,7 @@ class TopicPillItemComponent extends React.Component {
                             this.props.isCurrentTopic && this.state.editing &&
                             <i className="fas fa-times text-white wbdv-button wbdv-delete"
                                role="button" title="Delete"
-                               onClick={() => {
-                                   this.props.deleteTopic(this.props.topicId)
-                                       .then(r => this.props.findTopicsForLesson(
-                                           this.props.lessonId));
-                               }}></i>
+                               onClick={() => this.props.deleteTopic(this.props.topicId)}></i>
                         }
                         {
                             this.props.isCurrentTopic && this.state.editing &&
