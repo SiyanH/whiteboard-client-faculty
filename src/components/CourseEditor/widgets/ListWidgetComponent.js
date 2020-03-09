@@ -79,7 +79,7 @@ export default class ListWidgetComponent extends React.Component {
                     {
                         this.state.type === 'UNORDERED' && this.state.text !== null
                         && this.state.text !== '' &&
-                        <ul type="circle">
+                        <ul className="wbdv-list-widget-preview" type="circle">
                             {this.state.text.trim().split(/\s*\n/)
                                 .map((item, index) => <li key={index}>{item}</li>)}
                         </ul>
@@ -87,7 +87,7 @@ export default class ListWidgetComponent extends React.Component {
                     {
                         this.state.type === 'ORDERED' && this.state.text !== null && this.state.text
                         !== '' &&
-                        <ol type="circle">
+                        <ol className="wbdv-list-widget-preview" type="circle">
                             {this.state.text.trim().split(/\s*\n/)
                                 .map((item, index) => <li key={index}>{item}</li>)}
                         </ol>

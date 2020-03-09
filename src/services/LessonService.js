@@ -1,5 +1,4 @@
-import {API_URL_MODULE} from "../common/constants";
-import {API_URL_LESSON} from "../common/constants";
+import {API_URL_MODULE, API_URL_LESSON} from "../common/constants";
 
 /** Create a new lesson instance for the module whose ID is moduleId **/
 export const createLesson = async (moduleId, lesson) => {

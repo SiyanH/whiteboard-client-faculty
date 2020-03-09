@@ -176,6 +176,10 @@
     margin-bottom: 15px;
 }
 
+.wbdv-list-widget-preview {
+    margin-bottom: 0;
+}
+
 #widgetImg {
     max-width: 100%;
     max-height: 200px;
