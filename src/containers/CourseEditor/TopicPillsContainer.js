@@ -13,6 +13,8 @@ class TopicPillsContainer extends React.Component {
     componentDidMount() {
         if (this.props.lessonId !== undefined) {
             this.props.findTopicsForLesson(this.props.lessonId)
+        } else {
+            this.props.resetTopics()
         }
     }
 
@@ -21,7 +23,7 @@ class TopicPillsContainer extends React.Component {
             if (this.props.lessonId !== undefined) {
                 this.props.findTopicsForLesson(this.props.lessonId)
             } else {
-                this.props.resetTopics();
+                this.props.resetTopics()
             }
         }
     }

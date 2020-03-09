@@ -7,7 +7,7 @@ import {
     findAllWidgets,
     findWidgetsForTopic,
     updateWidget,
-    saveAllWidgets
+    saveAllWidgets,
 } from "../../actions/widgetActions";
 import WidgetComponent from "../../components/CourseEditor/widgets/WidgetComponent";
 
@@ -24,6 +24,8 @@ class WidgetListContainer extends React.Component {
                     widgets: props.widgets,
                     isPreview: props.preview === 'true'
                 })))
+        } else {
+            this.setState({widgets: []})
         }
     }
 
@@ -74,7 +76,7 @@ class WidgetListContainer extends React.Component {
                     }
                     return w;
                 })
-        }));
+        }))
     };
 
     changeWidgetName = (widgetId, name) => {
@@ -86,7 +88,7 @@ class WidgetListContainer extends React.Component {
                     }
                     return w;
                 })
-        }));
+        }))
     };
 
     changeWidgetSize = (widgetId, size) => {
@@ -98,7 +100,7 @@ class WidgetListContainer extends React.Component {
                     }
                     return w;
                 })
-        }));
+        }))
     };
 
     changeListType = (widgetId, type) => {
@@ -110,7 +112,7 @@ class WidgetListContainer extends React.Component {
                     }
                     return w;
                 })
-        }));
+        }))
     };
 
     changeImageUrl = (widgetId, url) => {
@@ -122,7 +124,7 @@ class WidgetListContainer extends React.Component {
                     }
                     return w;
                 })
-        }));
+        }))
     };
 
     createWidget = () => {
@@ -159,7 +161,7 @@ class WidgetListContainer extends React.Component {
                 newWidgets.splice(widget.order, 2, widget, widgetBefore);
 
                 return {widgets: newWidgets};
-            });
+            })
         }
     };
 
@@ -174,7 +176,7 @@ class WidgetListContainer extends React.Component {
                 newWidgets.splice(widgetAfter.order, 2, widgetAfter, widget);
 
                 return {widgets: newWidgets};
-            });
+            })
         }
     };
 
@@ -182,7 +184,7 @@ class WidgetListContainer extends React.Component {
         return (
             <div>
                 {
-                    this.props.widgets.length > 0 &&
+                    this.state.widgets.length > 0 &&
                     <div className="d-flex align-items-center float-right wbdv-widget-list-btn-top">
                         <button className="btn btn-sm btn-success wbdv-widget-save-btn"
                                 type="button"

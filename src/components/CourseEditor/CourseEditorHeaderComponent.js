@@ -3,7 +3,7 @@ import React from "react";
 const CourseEditorHeaderComponent = ({history, courseTitle}) =>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <button className="close ml-1 pb-1 wbdv-course-editor wbdv-close"
-           aria-label="Close" type="button" title="Close" onClick={history.goBack}>
+           aria-label="Close" type="button" title="Close" onClick={() => history.push("/")}>
             <span aria-hidden="true">&times;</span>
         </button>
         <a className="navbar-brand wbdv-course-title" href="/#">{courseTitle}</a>

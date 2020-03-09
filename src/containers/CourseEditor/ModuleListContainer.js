@@ -18,7 +18,7 @@ class ModuleListContainer extends React.Component {
     };
 
     componentDidMount() {
-        this.props.findModulesForCourse(this.props.courseId).then();
+        this.props.findModulesForCourse(this.props.courseId).then()
     }
 
     deleteModule = (moduleId) => {

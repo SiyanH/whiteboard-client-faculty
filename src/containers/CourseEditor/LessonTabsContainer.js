@@ -6,7 +6,7 @@ import lessonService from "../../services/LessonService";
 import LessonTabItemsComponent from "../../components/CourseEditor/LessonTabItemsComponent";
 import {
     createLesson, deleteLesson,
-    updateLesson,
+    updateLesson, resetLessons,
     findLessonsForModule
 } from "../../actions/lessonActions";
 import {findTopicsForLesson} from "../../actions/topicActions";
@@ -14,7 +14,9 @@ import {findTopicsForLesson} from "../../actions/topicActions";
 class LessonTabsContainer extends React.Component {
     componentDidMount() {
         if (this.props.moduleId !== undefined) {
-            this.props.findLessonsForModule(this.props.moduleId);
+            this.props.findLessonsForModule(this.props.moduleId)
+        } else {
+            this.props.resetLessons()
         }
     }
 
@@ -96,7 +98,8 @@ const dispatchToPropertyMapper = (dispatch) => {
                 .then(status => dispatch(deleteLesson(lessonId))),
         findTopicsForLesson: (lessonId) =>
             topicService.findTopicsForLesson(lessonId)
-                .then(actualTopics => dispatch(findTopicsForLesson(actualTopics)))
+                .then(actualTopics => dispatch(findTopicsForLesson(actualTopics))),
+        resetLessons: () => dispatch(resetLessons())
     }
 };
 
