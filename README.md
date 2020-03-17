@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[Heroku deployment](https://wbdv-sp20-siyanhe-client-react.herokuapp.com/)
+
+[Spring Boot server repository](https://github.ccs.neu.edu/hsy/cs5610-spring2020-springboot-siyanhe)
+
 ## Available Scripts
 
 In the project directory, you can run:
