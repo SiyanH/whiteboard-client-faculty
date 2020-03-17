@@ -24,7 +24,14 @@ export const findAllTopics = () => {
 
 /** Retrieve one topic whose ID is topicId **/
 export const findTopic = (topicId) => {
-    return fetch(`${API_URL_TOPIC}/${topicId}`).then(response => response.json());
+    return fetch(`${API_URL_TOPIC}/${topicId}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return null;
+            }
+        });
 };
 
 /** Update one topic whose ID is topicId **/

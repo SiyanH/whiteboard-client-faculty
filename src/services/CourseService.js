@@ -16,7 +16,14 @@ export const findAllCourses = () => {
 };
 
 export const findCourseById = (id) => {
-    return fetch(`${API_URL_COURSE}/${id}`).then(response => response.json());
+    return fetch(`${API_URL_COURSE}/${id}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return null;
+            }
+        });
 };
 
 export const updateCourse = async (id, course) => {

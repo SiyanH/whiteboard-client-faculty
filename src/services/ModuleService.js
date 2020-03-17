@@ -19,7 +19,14 @@ export const findModulesForCourse = (courseId) => {
 
 /** Retrieve one module whose ID is moduleId **/
 export const findModule = (moduleId) => {
-    return fetch(`${API_URL_MODULE}/${moduleId}`).then(response => response.json());
+    return fetch(`${API_URL_MODULE}/${moduleId}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return null;
+            }
+        });
 };
 
 /** Update one module whose ID is moduleId **/

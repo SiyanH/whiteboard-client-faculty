@@ -39,7 +39,7 @@ export default class ImageWidgetComponent extends React.Component {
                                         URL</label>
                                     <input className="form-control"
                                            id={`imageUrl_${this.props.widget.id}`}
-                                           placeholder="Image URL" type="text"
+                                           placeholder="Image URL" type="url"
                                            value={this.state.url === null ? "" : this.state.url}
                                            onChange={e => this.changeUrl(e.target.value)}/>
                                 </div>
@@ -57,7 +57,10 @@ export default class ImageWidgetComponent extends React.Component {
                             <h5>Preview</h5>
                         </div>
                     }
-                    <img id="widgetImg" src={this.state.url} alt="Preview"/>
+                    {
+                        this.state.url !== null && this.state.url !== "" &&
+                        <img id="widgetImg" src={this.state.url} alt="Preview"/>
+                    }
                 </div>
             </div>
         )

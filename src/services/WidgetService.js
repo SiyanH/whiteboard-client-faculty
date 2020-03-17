@@ -14,7 +14,14 @@ export const createWidget = async (tid, widget) => {
 
 /** Retrieve all widgets for topic whose ID is tid **/
 export const findWidgetsForTopic = (tid) => {
-    return fetch(`${API_URL_TOPIC}/${tid}/widgets`).then(response => response.json());
+    return fetch(`${API_URL_TOPIC}/${tid}/widgets`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return [];
+            }
+        });
 };
 
 /** Retrieve all widgets **/

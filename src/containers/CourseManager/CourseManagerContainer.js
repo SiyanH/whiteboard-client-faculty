@@ -99,7 +99,7 @@ class CourseManagerContainer extends React.Component {
                         <Route
                             path="/error"
                             exact={true}
-                            render={(props) => <ErrorPage/>}
+                            component={ErrorPage}
                         />
                         <Redirect to="/error"/>
                     </Switch>

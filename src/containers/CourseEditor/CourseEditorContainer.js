@@ -12,6 +12,9 @@ import widgetReducer from "../../reducers/widgetReducer";
 import ModuleListContainer from "./ModuleListContainer";
 import LessonTabsContainer from "./LessonTabsContainer";
 import TopicPillsContainer from "./TopicPillsContainer";
+import {findModule} from "../../services/ModuleService";
+import {findLesson} from "../../services/LessonService";
+import {findTopic} from "../../services/TopicService";
 
 const rootReducer = combineReducers({
                                         modules: moduleReducer,
@@ -28,8 +31,25 @@ class CourseEditorContainer extends React.Component {
     };
 
     getCourse = async () => {
+        let module, lesson, topic;
         const course = await findCourseById(this.props.courseId);
-        this.setState({course: course});
+
+        if (this.props.moduleId !== undefined) {
+            module = await findModule(this.props.moduleId);
+        }
+        if (this.props.lessonId !== undefined) {
+            lesson = await findLesson(this.props.lessonId);
+        }
+        if (this.props.topicId !== undefined) {
+            topic = await findTopic(this.props.topicId);
+        }
+
+        if (course === null || module === null || lesson === null || topic === null) {
+            alert("Invalid path");
+            this.props.history.replace("/");
+        } else {
+            this.setState({course: course});
+        }
     };
 
     componentDidMount = () => this.getCourse();
