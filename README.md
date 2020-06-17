@@ -10,7 +10,7 @@ You can test this app by either visiting the [live demo](https://wbdv-sp20-siyan
 
 *Please note that the live demo may take few minutes to start when you visit it.*
 
-A RESTful web service was built on a Spring Boot server for the client to peform CRUD operations.
+RESTful web services were built on a [Spring Boot server](https://github.com/SiyanH/whiteboard-server-springboot) and a generic Node.js server for the client to peform CRUD operations.
 
 ## Available Scripts
 
