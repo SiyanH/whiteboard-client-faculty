@@ -10,7 +10,7 @@ You can test this app by either visiting the [live demo](https://wbdv-sp20-siyan
 
 *Please note that the live demo may take few minutes to start when you visit it.*
 
-RESTful web services were built on a Spring Boot server for this front end.
+A RESTful web service was built on a Spring Boot server for this front end.
 
 ## Available Scripts
 
