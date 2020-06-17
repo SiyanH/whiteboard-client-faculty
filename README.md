@@ -1,6 +1,6 @@
 # Whiteboard Client - Faculty
 
-This is a React client for the Whiteboard web app. It is build for faculty to manage their courses.
+This is a React client for the Whiteboard web app. It is built for faculty to manage their courses.
 
 Whiteboard is a simple learning management platform where faculty can create courses and learning materials for students with various types of widgets, and students can take, submit and get scores for quizzes.
 
