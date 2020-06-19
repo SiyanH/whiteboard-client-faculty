@@ -12,9 +12,11 @@ Whiteboard is a simple learning management platform where faculty can create cou
 
 You can test this app by either visiting the [live demo](https://wbdv-sp20-siyanhe-client-react.herokuapp.com/) hosted on Heroku or running the code on your local machine.
 
-*Please note that the live demo may take few minutes to start when you visit it.*
+*Please note that the live demo may take few minutes to start when you visit it. Some features in the app are only for UI purpose and thus have not been implemented.*
 
 RESTful web services were built on a [Spring Boot server](https://github.com/SiyanH/whiteboard-server-springboot) and a generic Node.js server for the client to peform CRUD operations.
+
+*Please note that these operations may take few minutes before the server can response due to Heroku free-tier limit.*
 
 ![Course Widgets](pics/course-widget.png)
 
