@@ -4,6 +4,10 @@ This is a React client for the Whiteboard web app. It is built for faculty to ma
 
 Whiteboard is a simple learning management platform where faculty can create courses and learning materials for students with various types of widgets, and students can take, submit and get scores for quizzes.
 
+![Course List](pics/course-list.png)
+
+![Course Content](pics/course-content.png)
+
 ## Test
 
 You can test this app by either visiting the [live demo](https://wbdv-sp20-siyanhe-client-react.herokuapp.com/) hosted on Heroku or running the code on your local machine.
@@ -11,6 +15,8 @@ You can test this app by either visiting the [live demo](https://wbdv-sp20-siyan
 *Please note that the live demo may take few minutes to start when you visit it.*
 
 RESTful web services were built on a [Spring Boot server](https://github.com/SiyanH/whiteboard-server-springboot) and a generic Node.js server for the client to peform CRUD operations.
+
+![Course Widgets](pics/course-widget.png)
 
 ## Available Scripts
 
